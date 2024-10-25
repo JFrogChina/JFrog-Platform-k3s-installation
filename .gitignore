@@ -1,0 +1,12 @@
+k3s-data-dir/*
+!k3s-data-dir/.gitkeep
+
+# download/helm/*
+# !download/helm/.gitkeep
+
+# download/jfrog/*
+# !download/jfrog/.gitkeep
+
+# download/k3s/*
+# !download/k3s/.gitkeep
+

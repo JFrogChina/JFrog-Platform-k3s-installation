@@ -1,0 +1,54 @@
+# postgresql:
+#   persistence:
+#     existingClaim: pvc-pg
+#   volumePermissions:
+#     enabled: true
+
+# rabbitmq:
+#   persistence:
+#     existingClaim: pvc-rabbit
+#   volumePermissions:
+#     enabled: true
+
+artifactory:
+  enabled: true
+  # systemYamlOverride:
+  #   existingSecret: art-system-yaml
+  #   dataKey: system.yaml
+  # artifactory:
+  #   persistence:
+  #     existingClaim: pvc-art
+
+xray:
+  enabled: true
+  # systemYamlOverride:
+  #   existingSecret: xray-system-yaml
+  #   dataKey: system.yaml
+## for jas (serviceAccount & rbac)
+  serviceAccount:
+    create: true
+  rbac:
+    create: true
+  # common:
+  #   persistence:
+  #     existingClaim: pvc-xray
+
+insight:
+  enabled: false
+
+distribution:
+  enabled: false
+
+pipelines:
+  enabled: false
+
+## This Redis is used by pipelines only, set redis.enabled: false, when pipelines is not enabled
+redis:
+  enabled: false
+
+## for helm upgrade to work
+databaseUpgradeReady: true
+
+
+
+
