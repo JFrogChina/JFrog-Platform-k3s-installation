@@ -42,9 +42,11 @@ download_url="https://github.com/k3s-io/k3s/releases/download/v1.24.10%2Bk3s1/k3
 check_and_download_file $file_path $download_url
 
 if [ $? -eq 0 ]; then
-    mkdir -p /var/lib/rancher/k3s/agent/images/
-    # import images by placing into below path
+    # mkdir -p /var/lib/rancher/k3s/agent/images/
     # cp $file_path /var/lib/rancher/k3s/agent/images/
+
+    # import images by placing into below path
+    mkdir -p $K3S_DATA_DIR/agent/images/
     cp $file_path $K3S_DATA_DIR/agent/images/
 else
     exit 1
