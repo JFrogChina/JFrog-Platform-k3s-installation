@@ -31,7 +31,7 @@
                 - If you do not include it, the package will be about 3GB.
                 - If you include it, the package will be about 12GB. (To preserve your configuration)
 
-<img src="./guide/5.png" style="width: 800px;" > 
+<img src="./guide/1.png" style="width: 800px;" > 
 
 2. Enter the Target installation environment (airgap) 
 
@@ -39,22 +39,22 @@
         
         ./1-download.sh
 
-<img src="./guide/1.png" style="width: 800px;" > 
+<img src="./guide/2.png" style="width: 800px;" > 
 
         ./2-install-k3s.sh
 
-<img src="./guide/2.png" style="width: 800px;" > 
+<img src="./guide/3.png" style="width: 800px;" > 
 
         ./3-install-jfrog.sh
 
                 If you execute this script again, it will try to pull a new docker image to perform pre-upgrade checks.
                 So if you need to upgrade, please make sure you have simulated the upgrade in the simulation environment and exported this docker image.
 
-<img src="./guide/3.png" style="width: 800px;" > 
+<img src="./guide/4.png" style="width: 800px;" > 
 
         ./4-check-and-listen.sh
 
-<img src="./guide/4.png" style="width: 800px;" > 
+<img src="./guide/5.png" style="width: 800px;" > 
 
 ## Verified Supported Systems
 
