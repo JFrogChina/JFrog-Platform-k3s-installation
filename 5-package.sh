@@ -36,6 +36,8 @@ cd $APP_DIR
 cd ..    
 
 echo "include k3s data dir? (y/n)"
+du -sh $K3S_DATA_DIR
+
 read -r choice
 if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
     tar -czvf $KFS_PACKAGE_PATH $APP_DIR

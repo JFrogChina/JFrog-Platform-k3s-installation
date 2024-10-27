@@ -1,8 +1,8 @@
 
-# kfs = k3s + frog
+# kfs = k3s + jfrog platform
 
 ## Problems
-1. More and more components are increasingly complex to install separately, while k3s + jfrog platform is simple
+1. More and more components(e.g. Artifactory, Xray, JAS) are increasingly complex to install separately, while k3s + jfrog platform is simple
 2. k3s + jfrog platform installation requires many docker images, and the customer environment may be airgap
 3. Airgap is not only troublesome to install, but also troublesome to activate offline and configure demo
 
@@ -23,13 +23,13 @@
         Then, execute the scripts in order.
         ./1-download.sh
 
-                This step will download the packages required installation of k3s in an airgap environment.
-                It will also download helm and jfrog platofm's helm chart.
+                This step will download the packages required to install k3s in the airgap environment.
+                It will also download helm and jfrog platform's helm chart.
 
         ./2-install-k3s.sh
         ./3-install-jfrog.sh
 
-                In the simulated installation environment (non-airgap), this step will help us pull docker images.
+                This is how we can accurately parse the required jfrog docker images.
 
         ./4-check-and-listen.sh
 
@@ -59,9 +59,9 @@
 
         ./3-install-jfrog.sh
 
-                If you include k3s_data_dir in your package, you don't need to perform this step.
+                If you have included k3s_data_dir in your package, you don't need to perform this step.
 
-                If you execute this script again, it will try to pull a new docker image to perform pre-upgrade checks.
+                If you execute this script again, it will try to pull 1 more new docker image to perform pre-upgrade checks.
                 So if you need to upgrade, please make sure you have simulated the upgrade in the simulation environment and exported this docker image.
 
 <img src="./guide/4.png" style="width: 800px;" > 
