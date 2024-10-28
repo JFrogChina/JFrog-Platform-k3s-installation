@@ -3,7 +3,7 @@
 source common.sh
 
 echo "****************************************************"
-echo "*                kfs = k3s + frog!                 *"
+echo "*          kfs = k3s + jfrog platform!             *"
 echo "*  jfrog helm chart version=$JFROG_CHART_VERSION   *"
 echo "****************************************************"
 
