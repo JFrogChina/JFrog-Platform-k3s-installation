@@ -15,38 +15,36 @@
 
 1. Non-airgap installation
 
-Check & Update JFrog Platform Helm Chart Version:
+- Check & Update JFrog Platform Helm Chart Version, for example: JFROG_CHART_VERSION=10.19.6. Get the latest version number from https://charts.jfrog.io/
 ```
 vi ./common.sh
 ```
-- Example: JFROG_CHART_VERSION=10.19.6
-- Get the latest version number from https://charts.jfrog.io/
 
-Execute the Scripts in Order:
-
-Run the download script:
+- Run the download script:
 
 ```
 ./1-download.sh
 ```
 This downloads the required packages for k3s installation in the airgap environment and fetches Helm along with JFrog Platform’s Helm chart.
-Install k3s and JFrog Platform:
+
+- Install k3s and JFrog Platform:
 
 ```
 ./2-install-k3s.sh
 ./3-install-jfrog.sh
 ```
-These scripts parse and prepare the required JFrog Docker images.
-Check the Startup Status:
+
+- Check the Startup Status:
 ```
 ./4-check-and-listen.sh
 ```
-Check the pods to monitor the startup status. It may take a few minutes until all pods reach the "Running" state.
+- Check the pods to monitor the startup status. It may take a few minutes until all pods reach the "Running" state.
 ```
 kubectl get po -A -w
 ```
 
-
+- Access JFrog platform
+Access the platform by http://vm_ip:8080  
 
 2. Air-gapped installation
 - Go through all steps in the non air-gapped installation.
