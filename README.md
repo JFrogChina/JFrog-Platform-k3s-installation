@@ -41,10 +41,17 @@ Check the Startup Status:
 ```
 ./4-check-and-listen.sh
 ```
-Run this script repeatedly to monitor the startup status. It may take a few minutes until all pods reach the "Running" state.
-Package the Installation:
+Check the pods to monitor the startup status. It may take a few minutes until all pods reach the "Running" state.
+```
+kubectl get po -A -w
+```
 
-Run the packaging script ONLY if you want to do an air-gapped installation:
+
+
+2. Air-gapped installation
+- Go through all steps in the non air-gapped installation.
+- Package the installation packages:
+
 ```
 ./5-package.sh
 ```
@@ -54,9 +61,7 @@ Optionally, include the k3s_data_dir (~11GB) in the package, which preserves all
 
 <img src="./guide/1.png" style="width: 800px;" > 
 
-2. Air-gapped installation
-
-        Copy the single package to the airgap environment, unpack it, and execute the scripts in sequence again to install it.
+- Copy the single package to the airgap environment, unpack it, and execute the scripts in sequence again to install it.
         
         ./1-download.sh
 
@@ -68,9 +73,9 @@ Optionally, include the k3s_data_dir (~11GB) in the package, which preserves all
 
         ./3-install-jfrog.sh
 
-                If you have included k3s_data_dir in your package, you don't need to perform this step.
+- If you have included k3s_data_dir in your package, you don't need to perform this step.
 
-                If you execute this script again, it will try to pull 1 more new docker image to perform pre-upgrade checks.
+- If you execute this script again, it will try to pull 1 more new docker image to perform pre-upgrade checks.
                 So if you need to upgrade, please make sure you have simulated the upgrade in the simulation environment and exported this docker image.
 
 <img src="./guide/4.png" style="width: 800px;" > 
