@@ -4,7 +4,7 @@
 ## Problems
 - Installing individual components like Artifactory, Xray, and JAS can be complex. Using k3s with the JFrog Platform simplifies the process.
 - The k3s and JFrog Platform installation requires multiple Docker images, which can complicate air-gapped (offline) installations.
-- Air-gapped setups are challenging not only for installation but also for offline activation and demo configuration.
+- Air-gapped setups are challenging not only for installation but also for offline activation and demo configuration. (TBD)
 
 ## Objectives
 - Simulate an air-gapped installation in a non-air-gapped environment to ensure compatibility with a specific Helm chart version.
