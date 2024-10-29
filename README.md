@@ -13,39 +13,47 @@
 
 ## Guide
 
-1. Enter the simulated installation environment (non-airgap)
+1. Non-airgap installation
 
-        First, check & update version of jfrog platofm's helm chart
-        
-                vi ./common.sh
-                e.g. JFROG_CHART_VERSION=10.19.6, get the latest version number from https://charts.jfrog.io/
+        Check & Update JFrog Platform Helm Chart Version:
 
-        Then, execute the scripts in order.
-        ./1-download.sh
+shell
+复制代码
+vi ./common.sh
+# Example: JFROG_CHART_VERSION=10.19.6
+# Get the latest version number from https://charts.jfrog.io/
+Execute the Scripts in Order:
 
-                This step will download the packages required to install k3s in the airgap environment.
-                It will also download helm and jfrog platform's helm chart.
+Run the download script:
 
-        ./2-install-k3s.sh
-        ./3-install-jfrog.sh
+```
+./1-download.sh
+```
+This downloads the required packages for k3s installation in the airgap environment and fetches Helm along with JFrog Platform’s Helm chart.
+Install k3s and JFrog Platform:
 
-                This is how we can accurately parse the required jfrog docker images.
+```
+./2-install-k3s.sh
+./3-install-jfrog.sh
+```
+These scripts parse and prepare the required JFrog Docker images.
+Check the Startup Status:
+```
+./4-check-and-listen.sh
+```
+Run this script repeatedly to monitor the startup status. It may take a few minutes until all pods reach the "Running" state.
+Package the Installation:
 
-        ./4-check-and-listen.sh
-
-                You can execute this script repeatedly to see its startup status. It usually takes several minutes until all pods become running.
-
-        ./5-package.sh
-
-                This step is very important. 
-                First, you will choose to export jfrog docker images(about 2.9GB) for subsequent installation in the airgap environment.
-
-                Then, it will ask you whether to include k3s_data_dir(about 11GB) in the package.
-                The benefit of including it is that all the demo configurations you make in the simulation environment will be retained in the airgap environment.
-
+Run the packaging script ONLY if you want to do an air-gapped installation:
+```
+./5-package.sh
+```
+This step is crucial:
+You’ll be prompted to export the necessary JFrog Docker images (~2.9GB) for airgap installation.
+Optionally, include the k3s_data_dir (~11GB) in the package, which preserves all demo configurations from the simulation environment for use in the airgap environment.
 <img src="./guide/1.png" style="width: 800px;" > 
 
-2. Enter the target installation environment (airgap) 
+2. Air-gapped installation
 
         Copy the single package to the airgap environment, unpack it, and execute the scripts in sequence again to install it.
         
