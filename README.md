@@ -16,12 +16,12 @@
 1. Non-airgap installation
 
         Check & Update JFrog Platform Helm Chart Version:
-
-shell
-复制代码
+```
 vi ./common.sh
-# Example: JFROG_CHART_VERSION=10.19.6
-# Get the latest version number from https://charts.jfrog.io/
+```
+- Example: JFROG_CHART_VERSION=10.19.6
+- Get the latest version number from https://charts.jfrog.io/
+
 Execute the Scripts in Order:
 
 Run the download script:
