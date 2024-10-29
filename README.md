@@ -1,15 +1,15 @@
 
-# kfs = k3s + jfrog platform
+# JFrog-Platform-k3s-installation
 
 ## Problems
-1. More and more components(e.g. Artifactory, Xray, JAS) are increasingly complex to install separately, while k3s + jfrog platform is simple
-2. k3s + jfrog platform installation requires many docker images, and the customer environment may be airgap
-3. Airgap is not only troublesome to install, but also troublesome to activate offline and configure demo
+- Installing individual components like Artifactory, Xray, and JAS can be complex. Using k3s with the JFrog Platform simplifies the process.
+- The k3s and JFrog Platform installation requires multiple Docker images, which can complicate air-gapped (offline) installations.
+- Air-gapped setups are challenging not only for installation but also for offline activation and demo configuration.
 
-## Goals
-1. It allows you to easily simulate an airgap installation in your own environment to ensure that everything goes well with a specific chart version
-2. Installation can be as simple as copying a single file into the airgap environment
-3. Even all the demo configurations made in your simulated installation environment can be preserved
+## Objectives
+- Simulate an air-gapped installation in a non-air-gapped environment to ensure compatibility with a specific Helm chart version.
+- Enable simplified installation in an air-gapped environment by copying a single package.
+- Retain all demo configurations from the simulated environment in the final air-gapped setup.
 
 ## Guide
 
@@ -18,7 +18,7 @@
         First, check & update version of jfrog platofm's helm chart
         
                 vi ./common.sh
-                e.g. JFROG_CHART_VERSION=10.19.6
+                e.g. JFROG_CHART_VERSION=10.19.6, get the latest version number from https://charts.jfrog.io/
 
         Then, execute the scripts in order.
         ./1-download.sh
