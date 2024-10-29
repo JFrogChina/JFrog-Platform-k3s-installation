@@ -51,6 +51,7 @@ Run the packaging script ONLY if you want to do an air-gapped installation:
 This step is crucial:
 You’ll be prompted to export the necessary JFrog Docker images (~2.9GB) for airgap installation.
 Optionally, include the k3s_data_dir (~11GB) in the package, which preserves all demo configurations from the simulation environment for use in the airgap environment.
+
 <img src="./guide/1.png" style="width: 800px;" > 
 
 2. Air-gapped installation
