@@ -15,7 +15,7 @@
 
 1. Non-airgap installation
 
-        Check & Update JFrog Platform Helm Chart Version:
+Check & Update JFrog Platform Helm Chart Version:
 ```
 vi ./common.sh
 ```
