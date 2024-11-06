@@ -19,15 +19,15 @@ du -sh $K3S_DATA_DIR
 # e.g. 11 GB
 
 echo
-echo "3. try to listen on public-ip:8082"
+echo "3. try to listen on public-ip:8080"
 echo "----------------------------------------------------"
-# use 8082:80
+# use 8080:80
 # use --address 0.0.0.0
 # kill kubectl to stop
-kubectl port-forward --namespace jp svc/jfrog-platform-artifactory-nginx 8082:80 --address 0.0.0.0 &
+kubectl port-forward --namespace jp svc/jfrog-platform-artifactory-nginx 8080:80 --address 0.0.0.0 &
 
 echo "****************************************************"
-echo "*  if listen success, visit http://public-ip:8082  *"
+echo "*  if listen success, visit http://public-ip:8080  *"
 echo "****************************************************"
 
 

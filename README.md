@@ -44,7 +44,7 @@ kubectl get po -A -w
 ```
 
 - Access JFrog platform
-Access the platform by http://vm_public_ip:8082  
+Access the platform by http://vm_public_ip:8080  
 
 2. Air-gapped installation
 - Go through all steps in the non air-gapped installation.
