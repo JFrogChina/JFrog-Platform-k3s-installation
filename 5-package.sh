@@ -40,12 +40,13 @@ du -sh $K3S_DATA_DIR
 
 read -r choice
 if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
-    tar --exclude=$APP_DIR/.git/ -czvf $KFS_PACKAGE_PATH $APP_DIR
+    tar --exclude-vcs -czvf $KFS_PACKAGE_PATH $APP_DIR
 else
     echo "not to include"
-    tar --exclude=$K3S_DATA_DIR --exclude=$APP_DIR/.git/ -czvf $KFS_PACKAGE_PATH $APP_DIR
+    tar --exclude=$K3S_DATA_DIR --exclude-vcs -czvf $KFS_PACKAGE_PATH $APP_DIR
 fi
 
+echo
 du -sh $KFS_PACKAGE_PATH
 
 echo
