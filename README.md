@@ -93,6 +93,9 @@ https://jfrog.com/help/r/jfrog-installation-setup-documentation/k3s-installer-sy
 3. k3s v1.24 supported system version = e.g. RHEL 8.5 ~ 8.8
 https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-24/
 
+        Please note:
+        If you want to load the xray vulnerability library, higher system configuration is required
+        e.g. 8C16GB, 300GB
     
         | Simulated installation environment (non-airgap) | Target installation environment (airgap) | Support |
         |-------------------------------------------------|------------------------------------------|---------|
