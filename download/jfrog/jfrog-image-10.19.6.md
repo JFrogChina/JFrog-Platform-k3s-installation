@@ -1,4 +1,3 @@
-
 releases-docker.jfrog.io/ubi9/ubi-minimal:9.4.949.1716471857 
 releases-docker.jfrog.io/jfrog/nginx-artifactory-pro:7.90.14 
 releases-docker.jfrog.io/ubi9/ubi-minimal:9.4.949.1716471857 
