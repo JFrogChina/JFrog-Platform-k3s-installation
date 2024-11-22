@@ -1,0 +1,15 @@
+# if pull images online
+# 1. curl releases-docker.jfrog.io
+# 2. curl releases-cdn.jfrog.io
+# 3. skip tls
+# vi /etc/rancher/k3s/registries.yaml - https://docs.k3s.io/zh/installation/private-registry
+mirrors:
+  releases-docker.jfrog.io:
+    endpoint:
+      - "https://releases-docker.jfrog.io"
+configs:
+  releases-docker.jfrog.io:
+   tls:
+     insecure_skip_verify: true
+
+
