@@ -21,10 +21,17 @@ du -sh $K3S_DATA_DIR
 echo
 echo "3. try to listen on public-ip:8080"
 echo "----------------------------------------------------"
-# use 8080:80
-# use --address 0.0.0.0
+
+# about port
+# if 8080:80, web page works, but docker login ip:8080 fails because repo does not have port in path
+# if 80:80, kubectl port-forward --address 80:80 not work, no reason but 80 fails!
+
+# so 
+# 1. vi downlaod/jfrog/custom-values.yaml > externalPort: 8080
+# 2. use 8080:8080 as below
+
 # kill kubectl to stop
-kubectl port-forward --namespace jp svc/jfrog-platform-artifactory-nginx 8080:80 --address 0.0.0.0 &
+kubectl port-forward --namespace jp svc/jfrog-platform-artifactory-nginx 8080:8080 --address 0.0.0.0 &
 
 echo "****************************************************"
 echo "*  if listen success, visit http://public-ip:8080  *"

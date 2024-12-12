@@ -27,6 +27,8 @@ kfs = k3s + jfrog platform
                 vi ./common.sh
                 e.g. JFROG_CHART_VERSION=10.20.0
 
+                check all released charts here - https://charts.jfrog.io/
+
         Then, execute the scripts in order.
         ./1-download.sh
 
