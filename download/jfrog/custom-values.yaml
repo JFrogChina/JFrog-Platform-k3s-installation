@@ -55,6 +55,10 @@ redis:
 ## for helm upgrade to work
 databaseUpgradeReady: true
 
+## skip pre upgrade check to avoid additional image pull when upgrade
+preUpgradeHook:
+  enabled: false
+
 
 
 

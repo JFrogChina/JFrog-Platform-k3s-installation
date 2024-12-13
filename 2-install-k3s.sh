@@ -24,12 +24,23 @@ INSTALL_K3S_SKIP_DOWNLOAD=true ./install.sh --data-dir=$K3S_DATA_DIR
 # check (kubectl installed by k3s)
 kubectl get node
 
-# copy config for helm                      
+echo
+echo "3. config k3s"
+echo "----------------------------------------------------"
+cd $DOWNLOAD_DIR_K3S
+
+echo "copy config to ~/.kube/config for helm"
 cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 
+echo "if pull image from internet, do the whitelist & test:"
+echo "curl releases-docker.jfrog.io"
+echo "curl releases-cdn.jfrog.io"
+
+echo "skip tls verify for pulling image from internet"
+cp ./registries.yaml /etc/rancher/k3s/
 
 echo
-echo "3. import jfrog images"
+echo "4. import jfrog images"
 echo "----------------------------------------------------"
 # https://cwienczek.com/2020/06/import-images-to-k3s-without-docker-registry/
 file_path="$DOWNLOAD_DIR_JFROG/jfrog-images.tar"

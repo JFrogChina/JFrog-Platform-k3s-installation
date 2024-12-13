@@ -28,7 +28,16 @@ helm uninstall jfrog-platform --namespace jp
 echo
 echo "2. delete namespace jp"
 echo "----------------------------------------------------"
-kubectl delete ns jp
+
+echo "delete namespace jp (all data will be lost)? (y/n)"
+read -r choice
+if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
+    echo "delete namespace, please wait ..."
+    # all will lost
+    kubectl delete ns jp
+else
+    echo "not to delete"
+fi
 
 echo
 echo "uninstall jfrog end"
