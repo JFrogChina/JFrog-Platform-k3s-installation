@@ -32,9 +32,11 @@ echo "----------------------------------------------------"
 
 # kill kubectl to stop
 kubectl port-forward --namespace jp svc/jfrog-platform-artifactory-nginx 8080:8080 --address 0.0.0.0 &
+kubectl port-forward --namespace jp svc/jfrog-platform-artifactory-nginx 8443:8443 --address 0.0.0.0 &
 
 echo "****************************************************"
 echo "*  if listen success, visit http://public-ip:8080  *"
+echo "*  if listen success, visit https://public-ip:8443  *"
 echo "****************************************************"
 
 
