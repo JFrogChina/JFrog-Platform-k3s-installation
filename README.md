@@ -24,10 +24,14 @@ kfs = k3s + jfrog platform
 
         First, check & update version of jfrog platofm's helm chart
         
-                vi ./common.sh
-                e.g. JFROG_CHART_VERSION=10.20.0
+                check all releases here - https://jfrog.com/download-legacy/?product=platform&version=7.98.7
+                1. Product - Select Platform
+                2. Version - Select 7.98.7 (this is Artifactory Version)
+                3. click Helm icon - you see chart version is 10.20.0
 
-                check all released charts here - https://charts.jfrog.io/
+                        vi ./common.sh
+                        e.g. JFROG_CHART_VERSION=10.20.0
+                        for the chart's source code, check https://charts.jfrog.io/
 
         Then, execute the scripts in order.
         ./1-download.sh
