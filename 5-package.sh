@@ -11,7 +11,7 @@ echo "1. export jfrog images"
 echo "----------------------------------------------------"
 
 JFROG_IMAGES_PATH=$DOWNLOAD_DIR_JFROG/jfrog-images.tar
-echo "check exported jfrog & kube-system images"
+echo "check exported jfrog"
 du -sh $JFROG_IMAGES_PATH
 
 echo "export jfrog images? (y/n)"
