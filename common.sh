@@ -2,6 +2,18 @@ echo
 echo "kfs common start"
 echo "****************************************************"
 
+# xray has bug in this version
+# JFROG_CHART_VERSION=10.19.6 
+
+# verified this version works
+JFROG_CHART_VERSION=10.20.0
+
+# this version has catalog
+# JFROG_CHART_VERSION=11.0.3
+
+echo "JFROG_CHART_VERSION is $JFROG_CHART_VERSION"
+echo
+
 # kfs path
 SHELL_DIR=$(dirname "$BASH_SOURCE")
 
@@ -20,10 +32,6 @@ mkdir -p $K3S_DATA_DIR/agent/images/
 echo "APP_DIR is $APP_DIR"
 echo "DOWNLOAD_DIR is $DOWNLOAD_DIR"
 echo "K3S_DATA_DIR is $K3S_DATA_DIR"
-
-# JFROG_CHART_VERSION=10.19.6 (xray has bug)
-JFROG_CHART_VERSION=10.20.0
-echo "JFROG_CHART_VERSION is $JFROG_CHART_VERSION"
 
 echo
 echo "kfs common end"

@@ -85,8 +85,10 @@ fi
 echo
 echo "4. download helm"
 echo "----------------------------------------------------"
-file_path="$DOWNLOAD_DIR_HELM/helm-v3.5.0-linux-amd64.tar.gz"
-download_url="https://get.helm.sh/helm-v3.5.0-linux-amd64.tar.gz"
+# HELM_VERSION=v3.5.0 (if this helm version, jfrog platform chart 11.0.3 reports rabbitmq chart error)
+HELM_VERSION=v3.17.1
+file_path="$DOWNLOAD_DIR_HELM/helm-$HELM_VERSION-linux-amd64.tar.gz"
+download_url="https://get.helm.sh/helm-$HELM_VERSION-linux-amd64.tar.gz"
 
 check_and_download_file $file_path $download_url
 
