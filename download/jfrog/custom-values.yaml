@@ -18,6 +18,11 @@ artifactory:
   # artifactory:
   #   persistence:
   #     existingClaim: pvc-art
+  extraSystemYaml:
+    jfconnect:
+      enabled: true
+      airgap:
+          enabled: true
   nginx:
     service:
     http:
