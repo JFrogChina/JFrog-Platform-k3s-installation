@@ -19,9 +19,6 @@ artifactory:
   #   persistence:
   #     existingClaim: pvc-art
 # below extraSystemYaml not work (2025-06-04, JFROG_CHART_VERSION=10.20.0)
-# 1. please download chart
-# 2. update kfs/download/jfrog-platform/charts/artifactory/files/system.yaml directly
-# 3. tar -czf jfrog-platform-10.20.0.tgz jfrog-platform
   extraSystemYaml:
     jfconnect:
       enabled: true
