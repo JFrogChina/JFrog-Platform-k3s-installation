@@ -39,6 +39,10 @@ kfs = k3s + jfrog platform
 
 1.3 Install
 
+        ⚠️ Important
+        Please execute these scripts in a path with sufficient disk space. 
+        The data will be stored in the ./kfs/k3s-data-dir directory to accommodate the imported Xray vulnerability library (100GB~200GB) later.
+
         ./1-download.sh
 
                 This step will check if the packages have been downloaded, if not, download them (k3s, helm, jfrog platform's helm chart).
@@ -119,6 +123,10 @@ kfs = k3s + jfrog platform
 
 2.3 Install
 
+        ⚠️ Important
+        Please execute these scripts in a path with sufficient disk space. 
+        The data will be stored in the ./kfs/k3s-data-dir directory to accommodate the imported Xray vulnerability library (100GB~200GB) later.
+        
         ./1-download.sh
 
                 This step will copy the downloaded package to the directory waiting to be installed
