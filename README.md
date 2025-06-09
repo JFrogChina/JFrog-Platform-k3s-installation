@@ -41,7 +41,8 @@ kfs = k3s + jfrog platform
 
         ⚠️ Important
         Please execute these scripts in a path with sufficient disk space. 
-        The data will be stored in the ./kfs/k3s-data-dir directory to accommodate the imported Xray vulnerability library (100GB~200GB) later.
+        The data of running k3s will be stored in the ./kfs/k3s-data-dir directory.
+        The Imported Xray vulnerability database will occupy about 100GB~200GB.
 
         ./1-download.sh
 
@@ -125,7 +126,8 @@ kfs = k3s + jfrog platform
 
         ⚠️ Important
         Please execute these scripts in a path with sufficient disk space. 
-        The data will be stored in the ./kfs/k3s-data-dir directory to accommodate the imported Xray vulnerability library (100GB~200GB) later.
+        The data of running k3s will be stored in the ./kfs/k3s-data-dir directory.
+        The Imported Xray vulnerability database will occupy about 100GB~200GB.
         
         ./1-download.sh
 
