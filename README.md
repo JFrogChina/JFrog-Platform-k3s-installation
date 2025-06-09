@@ -77,7 +77,7 @@ kfs = k3s + jfrog platform
 
 <img src="./guide/1.png" style="width: 800px;" > 
 
-1.4 Configure JFrog Platform in an Air-gapped Environment
+1.4 Offline Activation of JFrog Platform in an Air-gapped Environment
 
         https://jfrog.com/help/r/jfrog-installation-setup-documentation/configure-jfrog-platform-in-an-air-gapped-environment
 
@@ -153,21 +153,24 @@ https://jfrog.com/help/r/jfrog-installation-setup-documentation/k3s-installer-sy
 
 https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-24/
 
-        Please note:
-
-        If you want to load the xray vulnerability library, higher system configuration is required
-
-        e.g. 8C16GB, 300GB
 
         | Simulated installation environment (non-airgap) | Target installation environment (airgap) | Support |
 
         |-------------------------------------------------|------------------------------------------|---------|
 
-        | CentOS 7.9, 4C8GB, 40GB                         | CentOS 7.9, 4C8GB, 40GB                  | Y       |
+        | CentOS 7.9, 4C8G, 40GB                          | CentOS 7.9, 4C8G, 40GB                  | Y       |
 
-        | CentOS 7.9, 4C8GB, 40GB                         | Redhat 8.8, 4C8GB, 40GB                  | Y       |
+        | CentOS 7.9, 4C8G, 40GB                          | Redhat 8.8, 4C8G, 40GB                  | Y       |
 
-        | CentOS 7.9, 4C8GB, 40GB                         | Ubuntu 22.04, 4C8GB, 40GB                | Y       |
+        | CentOS 7.9, 4C8G, 40GB                          | Ubuntu 22.04, 4C8G, 40GB                | Y       |
 
         https://www.tablesgenerator.com/markdown_tables
+
+## Resource Requirements
+
+        | Components to be tested               | Required Resources    |
+        |---------------------------------------|-----------------------|
+        | Artifactory                           | 4C8G                  |
+        | Artifactory + Security (Xray/JAS/...) | 8C16G（Minimum）      |
+        | Artifactory + Security (Xray/JAS/...) | 16C32G（Recommended） |
 
