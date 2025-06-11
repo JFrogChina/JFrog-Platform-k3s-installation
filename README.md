@@ -178,9 +178,9 @@ https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-24/
 
 ## Resource Requirements
 
-        | Components to be tested               | Required Resources    |
-        |---------------------------------------|-----------------------|
-        | Artifactory                           | 4C8G                  |
-        | Artifactory + Security (Xray/JAS/...) | 8C16G（Minimum）      |
-        | Artifactory + Security (Xray/JAS/...) | 16C32G（Recommended） |
+        | Components to be tested                             | Required Resources | Disk |
+        |-----------------------------------------------------|--------------------|------|
+        | Artifactory                                         | 4C8G               | 40G  |
+        | Artifactory + Security (Xray/JAS/...) - Minimum     | 8C16G              | 300G |
+        | Artifactory + Security (Xray/JAS/...) - Recommended | 16C32G             | 500G |
 
