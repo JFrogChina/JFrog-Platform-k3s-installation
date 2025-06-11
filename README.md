@@ -27,9 +27,12 @@ kfs = k3s + jfrog platform
 
 1.2 Check & update version of jfrog platofm's helm chart
 
-        vi ./common.sh
+        vi ./version.json
 
-        e.g. JFROG_CHART_VERSION=10.20.0
+        e.g. 
+        "ENABLED": true,
+        ...
+        "JFROG_CHART_VERSION": "10.20.0"
 
         check all releases here - https://jfrog.com/download-legacy/?product=platform&version=7.98.7
 

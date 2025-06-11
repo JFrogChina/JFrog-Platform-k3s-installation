@@ -11,9 +11,9 @@
     {
       "ENABLED": false,
       "DESC": "RHEL 8.5 ~ 8.8 - https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-25/",
-      "STATUS": "to test",
+      "STATUS": "Verified in test env, not fully tested",
       "K3S_VERSION": "v1.25.16",
-      "JFROG_CHART_VERSION": "10.20.0",
+      "JFROG_CHART_VERSION": "11.1.2",
       "ARCH_VERSION": "amd64",
       "HELM_VERSION": "v3.17.1"
     },
