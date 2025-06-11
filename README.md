@@ -15,7 +15,55 @@ kfs = k3s + jfrog platform
 2. Installation can be as simple as copying a single file into the airgap environment
 3. Even all the demo configurations made in your simulated installation environment can be preserved
 
-## Guide
+## Supported Systems
+
+1. jfrog supported system = e.g. RHEL 8.x, 9.x
+
+        https://jfrog.com/help/r/jfrog-installation-setup-documentation/requirements-matrix
+
+2. jfrog supported k3s
+
+        https://jfrog.com/help/r/jfrog-installation-setup-documentation/k3s-installer-system-requirements
+        
+        e.g.
+        v1.25.14
+
+3. k3s supported system
+
+        https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-24/
+        
+        e.g.
+        v1.25.14 = RHEL 8.5 ~ 8.8
+
+4. this project supported k3s
+
+        check ./version.json
+        
+        e.g. 
+        v1.24.10 = RHEL 8.4 ~ 8.6
+        v1.25.14 = RHEL 8.5 ~ 8.8
+
+        | Simulated installation environment (non-airgap) | Target installation environment (airgap) | Support |
+
+        |-------------------------------------------------|------------------------------------------|---------|
+
+        | CentOS 7.9, 4C8G, 40GB                          | CentOS 7.9, 4C8G, 40GB                  | Y       |
+
+        | CentOS 7.9, 4C8G, 40GB                          | Redhat 8.8, 4C8G, 40GB                  | Y       |
+
+        | CentOS 7.9, 4C8G, 40GB                          | Ubuntu 22.04, 4C8G, 40GB                | Y       |
+
+        https://www.tablesgenerator.com/markdown_tables
+
+## Resource Requirements
+
+        | Components to be tested                             | Required Resources | Disk |
+        |-----------------------------------------------------|--------------------|------|
+        | Artifactory                                         | 4C8G               | 40G  |
+        | Artifactory + Security (Xray/JAS/...) - Minimum     | 8C16G              | 300G |
+        | Artifactory + Security (Xray/JAS/...) - Recommended | 16C32G             | 500G |
+
+## Start Installation
 
 ### 1. Enter the simulated installation environment (non-airgap)   
 
@@ -151,39 +199,3 @@ kfs = k3s + jfrog platform
         ./4-check-and-listen.sh
 
 <img src="./guide/5.png" style="width: 800px;" > 
-
-## Verified Supported Systems
-
-1. jfrog supported system = e.g. RHEL 8.x, 9.x
-
-https://jfrog.com/help/r/jfrog-installation-setup-documentation/requirements-matrix
-
-2. jfrog tested k3s = K3s v1.25.14+k3s1 (here tested v1.24)
-
-https://jfrog.com/help/r/jfrog-installation-setup-documentation/k3s-installer-system-requirements
-
-3. k3s v1.24 supported system version = e.g. RHEL 8.5 ~ 8.8
-
-https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-24/
-
-
-        | Simulated installation environment (non-airgap) | Target installation environment (airgap) | Support |
-
-        |-------------------------------------------------|------------------------------------------|---------|
-
-        | CentOS 7.9, 4C8G, 40GB                          | CentOS 7.9, 4C8G, 40GB                  | Y       |
-
-        | CentOS 7.9, 4C8G, 40GB                          | Redhat 8.8, 4C8G, 40GB                  | Y       |
-
-        | CentOS 7.9, 4C8G, 40GB                          | Ubuntu 22.04, 4C8G, 40GB                | Y       |
-
-        https://www.tablesgenerator.com/markdown_tables
-
-## Resource Requirements
-
-        | Components to be tested                             | Required Resources | Disk |
-        |-----------------------------------------------------|--------------------|------|
-        | Artifactory                                         | 4C8G               | 40G  |
-        | Artifactory + Security (Xray/JAS/...) - Minimum     | 8C16G              | 300G |
-        | Artifactory + Security (Xray/JAS/...) - Recommended | 16C32G             | 500G |
-
