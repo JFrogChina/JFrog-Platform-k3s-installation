@@ -36,8 +36,8 @@ echo "****************************************************"
 echo
 echo "1. download k3s images"
 echo "----------------------------------------------------"
-file_path="$DOWNLOAD_DIR_K3S/k3s-airgap-images-amd64.tar.gz"
-download_url="https://github.com/k3s-io/k3s/releases/download/v1.24.10%2Bk3s1/k3s-airgap-images-amd64.tar.gz"
+file_path="$DOWNLOAD_DIR_K3S/k3s-airgap-images-$ARCH_VERSION.tar.gz"
+download_url="https://github.com/k3s-io/k3s/releases/download/$K3S_VERSION%2Bk3s1/k3s-airgap-images-$ARCH_VERSION.tar.gz"
 
 check_and_download_file $file_path $download_url
 
@@ -57,7 +57,7 @@ echo "2. download k3s binary"
 echo "----------------------------------------------------"
 
 file_path="$DOWNLOAD_DIR_K3S/k3s"
-download_url="https://github.com/k3s-io/k3s/releases/download/v1.24.10%2Bk3s1/k3s"
+download_url="https://github.com/k3s-io/k3s/releases/download/$K3S_VERSION%2Bk3s1/k3s"
 
 check_and_download_file $file_path $download_url
 
@@ -85,16 +85,14 @@ fi
 echo
 echo "4. download helm"
 echo "----------------------------------------------------"
-# HELM_VERSION=v3.5.0 (if this helm version, jfrog platform chart 11.0.3 reports rabbitmq chart error)
-HELM_VERSION=v3.17.1
-file_path="$DOWNLOAD_DIR_HELM/helm-$HELM_VERSION-linux-amd64.tar.gz"
-download_url="https://get.helm.sh/helm-$HELM_VERSION-linux-amd64.tar.gz"
+file_path="$DOWNLOAD_DIR_HELM/helm-$HELM_VERSION-linux-$ARCH_VERSION.tar.gz"
+download_url="https://get.helm.sh/helm-$HELM_VERSION-linux-$ARCH_VERSION.tar.gz"
 
 check_and_download_file $file_path $download_url
 
 if [ $? -eq 0 ]; then
     tar -zxf $file_path -C $DOWNLOAD_DIR_HELM
-    mv $DOWNLOAD_DIR_HELM/linux-amd64/helm /usr/local/bin/helm
+    mv $DOWNLOAD_DIR_HELM/linux-$ARCH_VERSION/helm /usr/local/bin/helm
 else
     exit 1
 fi

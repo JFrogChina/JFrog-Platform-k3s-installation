@@ -2,16 +2,47 @@ echo
 echo "kfs common start"
 echo "****************************************************"
 
-# xray has bug in this version
-# JFROG_CHART_VERSION=10.19.6 
+echo
+echo "the ENABLED versions defined in version.json to install"
+echo
 
-# verified this version works
-JFROG_CHART_VERSION=10.20.0
+VERSIONS_FILE="version.json"
 
-# this version has catalog
-# JFROG_CHART_VERSION=11.0.3
+# read the first "ENABLED": true
+combo=$(awk '
+    BEGIN { inside = 0; enabled = 0; out = "" }
+    /{/ { inside = 1; out = "" }
+    inside {
+        out = out $0 "\n"
+        if ($0 ~ /"ENABLED"[[:space:]]*:[[:space:]]*true/) enabled = 1
+    }
+    /}/ {
+        if (inside && enabled) {
+            print out
+            exit
+        }
+        inside = 0
+        enabled = 0
+    }
+' "$VERSIONS_FILE")
 
-echo "JFROG_CHART_VERSION is $JFROG_CHART_VERSION"
+if [ -z "$combo" ]; then
+    echo "❌ cannot find any "ENABLED": true in version.json"
+    return 1
+fi
+
+while IFS=':' read -r key value; do
+    key=$(echo "$key" | tr -d '[:space:]',)
+    value=$(echo "$value" | sed 's/^[[:space:]]*//')
+    case "$key" in
+        DESC|K3S_VERSION|JFROG_CHART_VERSION|ARCH_VERSION|HELM_VERSION)
+            eval "$key=\"$value\""
+            export "$key"
+            echo "$key"="$value"
+            ;;
+    esac
+done < <(echo "$combo" | grep ':' | sed -E 's/[",]//g')
+
 echo
 
 # kfs path
