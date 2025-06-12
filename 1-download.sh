@@ -29,89 +29,125 @@ check_and_download_file() {
     fi
 }
 
+
+download_k3s() {
+        echo
+        echo "1. download k3s images"
+        echo "----------------------------------------------------"
+        file_path="$DOWNLOAD_DIR_K3S/k3s-airgap-images-$K3S_ARCH.tar.gz"
+        download_url="https://github.com/k3s-io/k3s/releases/download/$K3S_VERSION%2Bk3s1/k3s-airgap-images-$K3S_ARCH.tar.gz"
+
+        check_and_download_file $file_path $download_url
+
+        if [ $? -eq 0 ]; then
+            # mkdir -p /var/lib/rancher/k3s/agent/images/
+            # cp $file_path /var/lib/rancher/k3s/agent/images/
+
+            # import images by placing into below path
+            mkdir -p $K3S_DATA_DIR/agent/images/
+            cp $file_path $K3S_DATA_DIR/agent/images/
+        else
+            exit 1
+        fi
+
+        echo
+        echo "2. download k3s binary"
+        echo "----------------------------------------------------"
+
+        file_path="$DOWNLOAD_DIR_K3S/k3s"
+        download_url="https://github.com/k3s-io/k3s/releases/download/$K3S_VERSION%2Bk3s1/k3s"
+
+        check_and_download_file $file_path $download_url
+
+        if [ $? -eq 0 ]; then
+            cp $file_path /usr/local/bin
+            chmod +x /usr/local/bin/k3s
+        else
+            exit 1
+        fi
+
+        echo
+        echo "3. download k3s script"
+        echo "----------------------------------------------------"
+        file_path="$DOWNLOAD_DIR_K3S/install.sh"
+        download_url="https://get.k3s.io/"
+
+        check_and_download_file $file_path $download_url
+
+        if [ $? -eq 0 ]; then
+            chmod +x $file_path
+        else
+            exit 1
+        fi
+}
+
+
+download_helm() {
+        echo
+        echo "4. download helm"
+        echo "----------------------------------------------------"
+        file_path="$DOWNLOAD_DIR_HELM/helm-$HELM_VERSION-$HELM_OS-$HELM_ARCH.tar.gz"
+        download_url="https://get.helm.sh/helm-$HELM_VERSION-$HELM_OS-$HELM_ARCH.tar.gz"
+
+        check_and_download_file $file_path $download_url
+
+        if [ $? -eq 0 ]; then
+            tar -zxf $file_path -C $DOWNLOAD_DIR_HELM
+            mv $DOWNLOAD_DIR_HELM/$HELM_OS-$HELM_ARCH/helm /usr/local/bin/helm
+        else
+            exit 1
+        fi
+}
+
+
+download_jfrog() {
+        echo
+        echo "5. download jfrog helm chart version=$JFROG_CHART_VERSION"
+        echo "----------------------------------------------------"
+        file_path="$DOWNLOAD_DIR_JFROG/jfrog-platform-$JFROG_CHART_VERSION.tgz"
+
+        if [ -f "$file_path" ]; then
+            echo "file found in local: $file_path"
+        else
+            echo "file not found, start download..."
+            helm repo add jfrog https://charts.jfrog.io 
+            helm repo update
+
+            cd $DOWNLOAD_DIR_JFROG
+            helm pull jfrog/jfrog-platform --version=$JFROG_CHART_VERSION
+        fi
+
+}
+
+
 echo
 echo "download start"
 echo "****************************************************"
 
-echo
-echo "1. download k3s images"
-echo "----------------------------------------------------"
-file_path="$DOWNLOAD_DIR_K3S/k3s-airgap-images-$ARCH_VERSION.tar.gz"
-download_url="https://github.com/k3s-io/k3s/releases/download/$K3S_VERSION%2Bk3s1/k3s-airgap-images-$ARCH_VERSION.tar.gz"
 
-check_and_download_file $file_path $download_url
-
-if [ $? -eq 0 ]; then
-    # mkdir -p /var/lib/rancher/k3s/agent/images/
-    # cp $file_path /var/lib/rancher/k3s/agent/images/
-
-    # import images by placing into below path
-    mkdir -p $K3S_DATA_DIR/agent/images/
-    cp $file_path $K3S_DATA_DIR/agent/images/
+if [ "$#" -eq 0 ]; then
+    download_k3s
+    download_jfrog
+    download_helm
 else
-    exit 1
+    for item in "$@"; do
+        case "$item" in
+            k3s)
+                download_k3s
+                ;;
+            helm)
+                download_helm
+                ;;
+            jfrog)
+                download_jfrog
+                ;;
+            *)
+                echo "⚠️ invalid param: $item, skip"
+                ;;
+        esac
+    done
 fi
 
-echo
-echo "2. download k3s binary"
-echo "----------------------------------------------------"
-
-file_path="$DOWNLOAD_DIR_K3S/k3s"
-download_url="https://github.com/k3s-io/k3s/releases/download/$K3S_VERSION%2Bk3s1/k3s"
-
-check_and_download_file $file_path $download_url
-
-if [ $? -eq 0 ]; then
-    cp $file_path /usr/local/bin
-    chmod +x /usr/local/bin/k3s
-else
-    exit 1
-fi
-
-echo
-echo "3. download k3s script"
-echo "----------------------------------------------------"
-file_path="$DOWNLOAD_DIR_K3S/install.sh"
-download_url="https://get.k3s.io/"
-
-check_and_download_file $file_path $download_url
-
-if [ $? -eq 0 ]; then
-    chmod +x $file_path
-else
-    exit 1
-fi
-
-echo
-echo "4. download helm"
-echo "----------------------------------------------------"
-file_path="$DOWNLOAD_DIR_HELM/helm-$HELM_VERSION-linux-$ARCH_VERSION.tar.gz"
-download_url="https://get.helm.sh/helm-$HELM_VERSION-linux-$ARCH_VERSION.tar.gz"
-
-check_and_download_file $file_path $download_url
-
-if [ $? -eq 0 ]; then
-    tar -zxf $file_path -C $DOWNLOAD_DIR_HELM
-    mv $DOWNLOAD_DIR_HELM/linux-$ARCH_VERSION/helm /usr/local/bin/helm
-else
-    exit 1
-fi
-
-echo
-echo "5. download jfrog helm chart version=$JFROG_CHART_VERSION"
-echo "----------------------------------------------------"
-file_path="$DOWNLOAD_DIR_JFROG/jfrog-platform-$JFROG_CHART_VERSION.tgz"
-
-if [ -f "$file_path" ]; then
-    echo "file found in local: $file_path"
-else
-    echo "file not found, start download..."
-    helm repo add jfrog https://charts.jfrog.io 
-    helm repo update
-
-    cd $DOWNLOAD_DIR_JFROG
-    helm pull jfrog/jfrog-platform --version=$JFROG_CHART_VERSION
-fi
 
 echo
 du -sh $DOWNLOAD_DIR

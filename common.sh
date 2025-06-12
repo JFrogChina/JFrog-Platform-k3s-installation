@@ -31,17 +31,22 @@ if [ -z "$combo" ]; then
     return 1
 fi
 
+tmpfile=$(mktemp)
+echo "$combo" | grep ':' | sed -E 's/[",]//g' > "$tmpfile"
+
 while IFS=':' read -r key value; do
-    key=$(echo "$key" | tr -d '[:space:]',)
-    value=$(echo "$value" | sed 's/^[[:space:]]*//')
+    key=$(echo "$key" | tr -d '[:space:]' | tr -d '"')
+    value=$(echo "$value" | sed 's/^[[:space:]]*//;s/[",]//g')
+
     case "$key" in
-        DESC|K3S_VERSION|JFROG_CHART_VERSION|ARCH_VERSION|HELM_VERSION)
-            eval "$key=\"$value\""
-            export "$key"
-            echo "$key"="$value"
+        JFROG_CHART_VERSION|K3S_ARCH|K3S_VERSION|HELM_OS|HELM_ARCH|HELM_VERSION)
+            export "$key=$value"
+            echo "$key=$value"
             ;;
     esac
-done < <(echo "$combo" | grep ':' | sed -E 's/[",]//g')
+done < "$tmpfile"
+
+rm -f "$tmpfile"
 
 echo
 

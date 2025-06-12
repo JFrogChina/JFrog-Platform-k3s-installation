@@ -1,35 +1,68 @@
 [
     {
-      "ENABLED": true,
-      "DESC": "RHEL 8.4 ~ 8.6 - https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-24/",
-      "STATUS": "Verified, tested in many POC in airgap env",
-      "K3S_VERSION": "v1.24.10",
-      "JFROG_CHART_VERSION": "10.20.0",
-      "ARCH_VERSION": "amd64",
-      "HELM_VERSION": "v3.17.1"
+      "README": "set ENABLED to true, the FIRST ENABLED will be used",
+      "RELEASE_NOTES": [
+        { 
+          "NOTE": "if JFROG_CHART_VERSION=10.19.6, xray has bug",
+          "DATE": "2024"
+        },
+        { 
+          "NOTE": "if JFROG_CHART_VERSION=11.0.3, it has catalog included",
+          "DATE": "2025"
+        }
+      ]
     },
     {
       "ENABLED": false,
-      "DESC": "RHEL 8.5 ~ 8.8 - https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-25/",
-      "STATUS": "Verified in test env, not fully tested",
-      "K3S_VERSION": "v1.25.16",
       "JFROG_CHART_VERSION": "11.1.2",
-      "ARCH_VERSION": "amd64",
+      "STATUS": "Verified, mac - this is to install jfrog into your EXISTING k8s from your mac, then visit jfrog from localhost",
+      
+      "K3S_ARCH": "",
+      "K3S_VERSION": "",
+      "K3S_DESC": "",
+      
+      "HELM_OS": "darwin",
+      "HELM_ARCH": "arm64",
       "HELM_VERSION": "v3.17.1"
     },
     {
-      "ENABLED": false,
-      "DESC": "RHEL 8.10 - https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-27/",
-      "STATUS": "NOT Work, install k3s error! ",
-      "K3S_VERSION": "v1.27.16",
+      "ENABLED": true,
       "JFROG_CHART_VERSION": "10.20.0",
-      "ARCH_VERSION": "amd64",
+      "STATUS": "Verified, tested in many POC in airgap env",
+      
+      "K3S_ARCH": "amd64",
+      "K3S_VERSION": "v1.24.10",
+      "K3S_DESC": "RHEL 8.4 ~ 8.6 - https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-24/",
+
+      "HELM_OS": "linux",
+      "HELM_ARCH": "amd64",
       "HELM_VERSION": "v3.17.1"
     },
     {
       "ENABLED": false,
-      "Note": "if JFROG_CHART_VERSION=10.19.6, xray has bug",
-      "Note": "if JFROG_CHART_VERSION=11.0.3, it has catalog included"
+      "JFROG_CHART_VERSION": "11.1.2",
+      "STATUS": "Verified in test env, not fully tested",
+
+      "K3S_ARCH": "amd64",
+      "K3S_VERSION": "v1.25.16",
+      "K3S_DESC": "RHEL 8.5 ~ 8.8 - https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-25/",
+
+      "HELM_OS": "linux",
+      "HELM_ARCH": "amd64",
+      "HELM_VERSION": "v3.17.1"
+    },
+    {
+      "ENABLED": false,
+      "JFROG_CHART_VERSION": "10.20.0",
+      "STATUS": "NOT Work, install k3s error! ",
+
+      "K3S_ARCH": "amd64",
+      "K3S_VERSION": "v1.27.16",
+      "K3S_DESC": "RHEL 8.10 - https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-27/",
+      
+      "HELM_OS": "linux",
+      "HELM_ARCH": "amd64",
+      "HELM_VERSION": "v3.17.1"
     }
 ]
   
