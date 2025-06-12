@@ -80,13 +80,14 @@ kfs = k3s + jfrog platform
         e.g. 
         "ENABLED": true,
         ...
-        "JFROG_CHART_VERSION": "10.20.0"
+        "JFROG_CHART_VERSION": "x.x.x"
 
-        check all releases here - https://jfrog.com/download-legacy/?product=platform&version=7.98.7
+        check all releases here - https://jfrog.com/download-legacy/?product=platform
 
         1. Product - Select Platform
-        2. Version - Select 7.98.7 (this is Artifactory Version)
-        3. Click Helm icon - you see chart version is 10.20.0, to understand the chart's source code, check https://charts.jfrog.io/
+        2. Version - Select x.x.x (this is Helm Chart Version)
+        3. Check https://charts.jfrog.io/ - search x.x.x
+        download it, check Artifactory version in Chart.yaml
 
 1.3 Install
 
