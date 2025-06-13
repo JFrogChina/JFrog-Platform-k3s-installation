@@ -1,6 +1,8 @@
 
+# include common
+source common.sh
 
-kubectl get svc -n jp
+kubectl get svc -n $NAMESPACE
 
 # e.g.
 # NAME                               TYPE           CLUSTER-IP        EXTERNAL-IP     PORT(S)                                 AGE

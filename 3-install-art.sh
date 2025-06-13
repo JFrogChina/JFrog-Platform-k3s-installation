@@ -15,7 +15,7 @@ helm upgrade --install artifactory --namespace jp ./artifactory-$ART_CHART_VERSI
 
 echo
 echo "check pv"
-kubectl get pv -n jp
+kubectl get pv -n $NAMESPACE
 
 echo
 echo "install artifactory end "

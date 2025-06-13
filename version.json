@@ -31,6 +31,7 @@
     {
       "ID": "2025-06-12",
       "ENABLED": false,
+      "NAMESPACE": "jp",
       "JFROG_PLATFORM_CHART_VERSION": "11.0.0",
       "ART_CHART_VERSION": "107.111.7",
       "XRAY_CHART_VERSION": "103.118.13",
@@ -47,6 +48,7 @@
     {
       "ID": "2024-11-05",
       "ENABLED": true,
+      "NAMESPACE": "jp",
       "JFROG_PLATFORM_CHART_VERSION": "10.20.0",
       "DESC": "",
       
@@ -61,6 +63,7 @@
     {
       "ID": "2025-06-06",
       "ENABLED": false,
+      "NAMESPACE": "jp",
       "JFROG_PLATFORM_CHART_VERSION": "11.1.2",
       "DESC": "install success, not fully tested",
 
@@ -75,6 +78,7 @@
     {
       "ID": "2025-06-08",
       "ENABLED": false,
+      "NAMESPACE": "jp",
       "JFROG_PLATFORM_CHART_VERSION": "10.20.0",
       "DESC": "this is to test install on RHEL 8.10, result is NOT Work, install k3s error! ",
 

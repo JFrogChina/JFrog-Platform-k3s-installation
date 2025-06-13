@@ -9,7 +9,7 @@ echo "****************************************************"
 echo
 echo "1. check install status, please wait ..."
 echo "----------------------------------------------------"
-kubectl get pods -n jp
+kubectl get pods -n $NAMESPACE
 
 
 echo
@@ -31,10 +31,10 @@ echo "----------------------------------------------------"
 # 2. use 8080:8080 as below
 
 # kill kubectl to stop
-kubectl port-forward -n jp svc/jfrog-platform-artifactory-nginx 8080:8080 --address 0.0.0.0 &
-kubectl port-forward -n jp svc/jfrog-platform-artifactory-nginx 8443:8443 --address 0.0.0.0 &
+kubectl port-forward -n $NAMESPACE svc/jfrog-platform-artifactory-nginx 8080:8080 --address 0.0.0.0 &
+kubectl port-forward -n $NAMESPACE svc/jfrog-platform-artifactory-nginx 8443:8443 --address 0.0.0.0 &
 
-kubectl port-forward -n jp-art svc/artifactory-artifactory-nginx 38080:38080 --address 0.0.0.0 &
+kubectl port-forward -n $NAMESPACE svc/artifactory-artifactory-nginx 38080:38080 --address 0.0.0.0 &
 
 echo "*************************************************************************"
 echo "*  if listen success with jfrog-platform, visit http://public-ip:8080   *"

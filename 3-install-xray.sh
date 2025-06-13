@@ -34,7 +34,7 @@ helm upgrade --install xray --namespace jp ./xray-$XRAY_CHART_VERSION.tgz -f ./c
 
 echo
 echo "check pv"
-kubectl get pv -n jp
+kubectl get pv -n $NAMESPACE
 
 echo
 echo "install xray end "

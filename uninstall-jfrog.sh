@@ -1,5 +1,4 @@
 
-
 # include common
 source common.sh
 
@@ -22,27 +21,27 @@ echo "uninstall xray"
 helm uninstall xray --namespace jp
 
 # manual pv/pvc (not used, because jfrog's chart's existingClaim not work)
-# if error = storageclass.storage.k8s.io "manual" not found, do delete pv/pvc e.g. kubectl delete pv/pv-pg -n jp
-# kubectl delete pvc/pvc-pg -n jp
-# kubectl delete pvc/pvc-rabbit -n jp
-# kubectl delete pvc/pvc-art -n jp
-# kubectl delete pvc/pvc-xray -n jp
+# if error = storageclass.storage.k8s.io "manual" not found, do delete pv/pvc e.g. kubectl delete pv/pv-pg -n $NAMESPACE
+# kubectl delete pvc/pvc-pg -n $NAMESPACE
+# kubectl delete pvc/pvc-rabbit -n $NAMESPACE
+# kubectl delete pvc/pvc-art -n $NAMESPACE
+# kubectl delete pvc/pvc-xray -n $NAMESPACE
 
-# kubectl delete pv/pv-pg -n jp
-# kubectl delete pv/pv-rabbit -n jp
-# kubectl delete pv/pv-art -n jp
-# kubectl delete pv/pv-xray -n jp
+# kubectl delete pv/pv-pg -n $NAMESPACE
+# kubectl delete pv/pv-rabbit -n $NAMESPACE
+# kubectl delete pv/pv-art -n $NAMESPACE
+# kubectl delete pv/pv-xray -n $NAMESPACE
 
 echo
-echo "2. delete namespace jp"
+echo "2. delete namespace $NAMESPACE"
 echo "----------------------------------------------------"
 
-echo "delete namespace jp (all data will be lost)? (y/n)"
+echo "delete namespace $NAMESPACE (all data will be lost)? (y/n)"
 read -r choice
 if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
     echo "delete namespace, please wait ..."
     # all will lost
-    kubectl delete ns jp
+    kubectl delete ns $NAMESPACE
 else
     echo "not to delete"
 fi

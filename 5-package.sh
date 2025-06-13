@@ -19,7 +19,7 @@ read -r choice
 if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
     echo "export jfrog images, please wait ..."
     # helm install jfrog helps us pull the images, no need to install docker to do that
-    JFROG_IMAGES_NAME=`kubectl get pods -n jp -o jsonpath="{..image}"`
+    JFROG_IMAGES_NAME=`kubectl get pods -n $NAMESPACE -o jsonpath="{..image}"`
     ctr images export $JFROG_IMAGES_PATH $JFROG_IMAGES_NAME
 else
     echo "not to export"
