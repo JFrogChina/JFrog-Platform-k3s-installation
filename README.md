@@ -73,18 +73,18 @@ kfs = k3s + jfrog platform
 
         ./uninstall-docker.sh
 
-1.2 Check & update version of jfrog platofm's helm chart
+1.2 Check & update version of jfrog helm chart
 
         vi ./version.json
 
         e.g. 
         "ENABLED": true,
         ...
-        "JFROG_CHART_VERSION": "x.x.x"
-
+        "xxx_VERSION": "x.x.x"
+        
         check all releases here - https://jfrog.com/download-legacy/?product=platform
 
-        1. Product - Select Platform
+        1. Product - Select Platform / Artifactory / Xray
         2. Version - Select x.x.x (this is Helm Chart Version)
         3. Check https://charts.jfrog.io/ - search x.x.x
         download it, check Artifactory version in Chart.yaml
@@ -98,7 +98,7 @@ kfs = k3s + jfrog platform
 
         ./1-download.sh
 
-                This step will check if the packages have been downloaded, if not, download them (k3s, helm, jfrog platform's helm chart).
+                This step will check if the packages have been downloaded, if not, download them (k3s, helm, jfrog helm chart).
 
                 And copy the downloaded package to the directory waiting to be installed
 
@@ -108,7 +108,14 @@ kfs = k3s + jfrog platform
 
                 systemctl status k3s
 
-        ./3-install-jfrog.sh
+        ./3-install-xxx.sh
+        
+                ./3-install-jfrog-platform.sh
+
+                OR
+
+                ./3-install-art.sh
+                ./3-install-xray.sh
 
                 This is how we can accurately parse the required jfrog docker images.
 
@@ -121,7 +128,7 @@ kfs = k3s + jfrog platform
                 ⚠️ Important
                 Before performing this step:
 
-                You should execute ./3-install-jfrog.sh again to test the upgrade process, because during the upgrade it will try to pull a new Docker image to perform pre-upgrade checks. This will ensure that you do not lose this image later when you package the installation package and perform the upgrade in an isolated environment.
+                You should execute ./3-install-xxx.sh again to test the upgrade process, because during the upgrade it will try to pull a new Docker image to perform pre-upgrade checks. This will ensure that you do not lose this image later when you package the installation package and perform the upgrade in an isolated environment.
 
                 ⚠️ Important
                 When you perform this step:
@@ -134,7 +141,7 @@ kfs = k3s + jfrog platform
 
 <img src="./guide/1.png" style="width: 800px;" > 
 
-1.4 Offline Activation of JFrog Platform in an Air-gapped Environment
+1.4 Offline Activation of JFrog in an Air-gapped Environment
 
         https://jfrog.com/help/r/jfrog-installation-setup-documentation/configure-jfrog-platform-in-an-air-gapped-environment
 
@@ -144,10 +151,10 @@ kfs = k3s + jfrog platform
         There are several ways to make changes:
         1. By configuring custom-values.yaml (the best way)
 
-                ls ./kfs/download/jfrog/custom-values.yaml
+                ls ./kfs/download/jfrog/custom/custom-values.yaml
                 check extraSystemYaml in it
    
-                it will merge with ./kfs/download/jfrog-platform/charts/artifactory/files/system.yaml
+                it will merge with ./kfs/download/jfrog/jfrog-platform/charts/artifactory/files/system.yaml
                 
                 if update the source file
                 tar -czf jfrog-platform-x.x.x.tgz jfrog-platform
@@ -193,7 +200,14 @@ kfs = k3s + jfrog platform
 
 <img src="./guide/3.png" style="width: 800px;" > 
 
-        ./3-install-jfrog.sh
+        ./3-install-xxx.sh
+        
+                ./3-install-jfrog-platform.sh
+
+                OR
+                
+                ./3-install-art.sh
+                ./3-install-xray.sh
 
                 If you have included k3s_data_dir in your package, you don't need to perform this step.
 
