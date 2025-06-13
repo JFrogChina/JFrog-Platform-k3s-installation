@@ -39,7 +39,7 @@ while IFS=':' read -r key value; do
     value=$(echo "$value" | sed 's/^[[:space:]]*//;s/[",]//g')
 
     case "$key" in
-        JFROG_CHART_VERSION|K3S_ARCH|K3S_VERSION|HELM_OS|HELM_ARCH|HELM_VERSION)
+        ID|JFROG_CHART_VERSION|K3S_ARCH|K3S_VERSION|HELM_OS|HELM_ARCH|HELM_VERSION)
             export "$key=$value"
             echo "$key=$value"
             ;;

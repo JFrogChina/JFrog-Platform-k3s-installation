@@ -13,6 +13,7 @@
       ]
     },
     {
+      "ID": "2025-06-12",
       "ENABLED": false,
       "JFROG_CHART_VERSION": "11.1.2",
       "STATUS": "Verified, mac - this is to install jfrog into your EXISTING k8s from your mac, then visit jfrog from localhost",
@@ -26,6 +27,7 @@
       "HELM_VERSION": "v3.17.1"
     },
     {
+      "ID": "2024-11-05",
       "ENABLED": true,
       "JFROG_CHART_VERSION": "10.20.0",
       "STATUS": "Verified, tested in many POC in airgap env",
@@ -39,6 +41,7 @@
       "HELM_VERSION": "v3.17.1"
     },
     {
+      "ID": "2025-06-06",
       "ENABLED": false,
       "JFROG_CHART_VERSION": "11.1.2",
       "STATUS": "Verified in test env, not fully tested",
@@ -52,6 +55,7 @@
       "HELM_VERSION": "v3.17.1"
     },
     {
+      "ID": "2025-06-08",
       "ENABLED": false,
       "JFROG_CHART_VERSION": "10.20.0",
       "STATUS": "NOT Work, install k3s error! ",
