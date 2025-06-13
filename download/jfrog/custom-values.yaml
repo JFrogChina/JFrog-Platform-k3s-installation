@@ -15,14 +15,14 @@ artifactory:
   # systemYamlOverride:
   #   existingSecret: art-system-yaml
   #   dataKey: system.yaml
-  # for resetting password
-  # artifactory:
-  #   admin:
-  #     ip: "*"
-  #     username: "admin"
-  #     password: "password"
-  #   persistence:
-  #     existingClaim: pvc-art
+  artifactory:
+    # persistence:
+    # existingClaim: pvc-art
+## for resetting password
+    # admin:
+      # ip: "*"
+      # username: "admin"
+      # password: "password"
     extraSystemYaml:
       jfconnect:
         enabled: true
