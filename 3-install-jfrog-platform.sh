@@ -3,7 +3,7 @@
 source common.sh
 
 echo
-echo "install jfrog start"
+echo "install jfrog-platform start"
 echo "****************************************************"
 
 kubectl create namespace jp
@@ -20,13 +20,13 @@ kubectl create namespace jp
 # install / upgrade
 # NOTICE
 cd $DOWNLOAD_DIR_JFROG
-helm upgrade --install jfrog-platform --namespace jp ./jfrog-platform-$JFROG_CHART_VERSION.tgz -f custom-values.yaml
+helm upgrade --install jfrog-platform --namespace jp ./jfrog-platform-$JFROG_PLATFORM_CHART_VERSION.tgz -f ./custom/jfrog-platform-custom-values.yaml
 
 echo
 echo "check pv"
 kubectl get pv -n jp
 
 echo
-echo "install jfrog end "
+echo "install jfrog-platform end "
 echo "****************************************************"
 

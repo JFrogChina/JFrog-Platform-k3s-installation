@@ -3,45 +3,47 @@
       "README": "set ENABLED to true, the FIRST ENABLED will be used",
       "JFROG_CHART_NOTES": [
         { 
-          "JFROG_CHART_VERSION": "10.19.6",
+          "JFROG_PLATFORM_CHART_VERSION": "10.19.6",
           "NOTE": "xray helm chart error with old helm version, helm version is already upgraded"
         },
         { 
-          "JFROG_CHART_VERSION": "10.20.0",
+          "JFROG_PLATFORM_CHART_VERSION": "10.20.0",
           "NOTE": "tested in many POC in airgap env, but found nuget build info lacking of sha256 issue, no scan result"
         },
         { 
-          "JFROG_CHART_VERSION": "10.20.4",
+          "JFROG_PLATFORM_CHART_VERSION": "10.20.4",
           "NOTE": "found nuget build info lacking of sha256 issue"
         },
         { 
-          "JFROG_CHART_VERSION": "11.0.3",
+          "JFROG_PLATFORM_CHART_VERSION": "11.0.3",
           "NOTE": "this has catalog included, but not tested yet"
         },
         { 
-          "JFROG_CHART_VERSION": "11.1.5",
-          "NOTE": "11.x.x bug - activate xray license page blank ..."
+          "JFROG_PLATFORM_CHART_VERSION": "11.x.x ~ 11.1.5",
+          "NOTE": "activate xray license page blank ..."
         }
       ]
     },
     {
       "ID": "2025-06-12",
       "ENABLED": false,
-      "JFROG_CHART_VERSION": "11.1.5",
+      "JFROG_PLATFORM_CHART_VERSION": "11.0.0",
+      "ART_CHART_VERSION": "107.111.7",
+      "XRAY_CHART_VERSION": "103.118.13",
       "DESC": "this is to install jfrog into your EXISTING k8s from your mac, then visit jfrog from http://localhost:8080 or ./check-svc.sh to have LB IP",
       
       "K3S_ARCH": "",
       "K3S_VERSION": "",
       "K3S_DESC": "",
       
-      "HELM_OS": "darwin",
-      "HELM_ARCH": "arm64",
-      "HELM_VERSION": "v3.17.1"
+      "HELM_OS": "",
+      "HELM_ARCH": "",
+      "HELM_VERSION": ""
     },
     {
       "ID": "2024-11-05",
       "ENABLED": true,
-      "JFROG_CHART_VERSION": "10.20.0",
+      "JFROG_PLATFORM_CHART_VERSION": "10.20.0",
       "DESC": "",
       
       "K3S_ARCH": "amd64",
@@ -55,7 +57,7 @@
     {
       "ID": "2025-06-06",
       "ENABLED": false,
-      "JFROG_CHART_VERSION": "11.1.2",
+      "JFROG_PLATFORM_CHART_VERSION": "11.1.2",
       "DESC": "install success, not fully tested",
 
       "K3S_ARCH": "amd64",
@@ -69,7 +71,7 @@
     {
       "ID": "2025-06-08",
       "ENABLED": false,
-      "JFROG_CHART_VERSION": "10.20.0",
+      "JFROG_PLATFORM_CHART_VERSION": "10.20.0",
       "DESC": "this is to test install on RHEL 8.10, result is NOT Work, install k3s error! ",
 
       "K3S_ARCH": "amd64",

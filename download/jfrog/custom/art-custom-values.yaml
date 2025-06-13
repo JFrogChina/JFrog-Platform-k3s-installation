@@ -1,0 +1,25 @@
+
+artifactory:
+  # persistence:
+  # existingClaim: pvc-art
+## for resetting password
+  # admin:
+    # ip: "*"
+    # username: "admin"
+    # password: "password"
+  extraSystemYaml:
+    jfconnect:
+      enabled: true
+      airgap:
+        enabled: true
+nginx:
+  enabled: true
+  https:
+    enabled: false
+  service:
+    type: NodePort
+    nodePort: 30080
+  http:
+    internalPort: 30080
+    externalPort: 30080
+

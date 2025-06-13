@@ -37,7 +37,7 @@ echo "curl releases-docker.jfrog.io"
 echo "curl releases-cdn.jfrog.io"
 
 echo "skip tls verify for pulling image from internet"
-cp ./registries.yaml /etc/rancher/k3s/
+cp ./custom/registries.yaml /etc/rancher/k3s/
 
 echo
 echo "4. import jfrog images"

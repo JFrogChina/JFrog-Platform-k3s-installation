@@ -12,22 +12,22 @@
 
 artifactory:
   enabled: true
-  # systemYamlOverride:
-  #   existingSecret: art-system-yaml
-  #   dataKey: system.yaml
   artifactory:
+    # systemYamlOverride:
+    #   existingSecret: art-system-yaml
+    #   dataKey: system.yaml
     # persistence:
     # existingClaim: pvc-art
-## for resetting password
-    # admin:
-      # ip: "*"
-      # username: "admin"
-      # password: "password"
     extraSystemYaml:
       jfconnect:
         enabled: true
         airgap:
           enabled: true
+## for resetting password
+    # admin:
+      # ip: "*"
+      # username: "admin"
+      # password: "password"
   nginx:
     service:
       annotations: {}
@@ -38,9 +38,10 @@ artifactory:
 
 xray:
   enabled: true
-  # systemYamlOverride:
-  #   existingSecret: xray-system-yaml
-  #   dataKey: system.yaml
+  # xray:
+    # systemYamlOverride:
+    #   existingSecret: xray-system-yaml
+    #   dataKey: system.yaml
 ## for jas (serviceAccount & rbac)
   serviceAccount:
     create: true

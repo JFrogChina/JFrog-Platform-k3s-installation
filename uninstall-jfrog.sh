@@ -11,7 +11,15 @@ echo
 echo "1. stop jfrog"
 echo "----------------------------------------------------"
 # pvc will retain, secret will lost
+
+echo "uninstall jfrog-platform"
 helm uninstall jfrog-platform --namespace jp
+
+echo "uninstall artifactory"
+helm uninstall artifactory --namespace jp
+
+echo "uninstall xray"
+helm uninstall xray --namespace jp
 
 # manual pv/pvc (not used, because jfrog's chart's existingClaim not work)
 # if error = storageclass.storage.k8s.io "manual" not found, do delete pv/pvc e.g. kubectl delete pv/pv-pg -n jp
