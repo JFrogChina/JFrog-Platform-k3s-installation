@@ -142,18 +142,21 @@ kfs = k3s + jfrog platform
         In this document, the first step is to change the Artifactory System YAML file.
         
         There are several ways to make changes:
-        1. By configuring custom-values.yaml (tested NOT work 2025-06-04, JFROG_CHART_VERSION=10.20.0)
+        1. By configuring custom-values.yaml (the best way)
 
-                vi ./kfs/download/jfrog/custom-values.yaml
-                set extraSystemYaml in it
+                ls ./kfs/download/jfrog/custom-values.yaml
+                check extraSystemYaml in it
    
         2. By directly change the system.yaml file
 
                 1. check & unzip the downloaded chart
                 2. update ./kfs/download/jfrog-platform/charts/artifactory/files/system.yaml directly
-                3. tar -czf jfrog-platform-10.20.0.tgz jfrog-platform
+                3. tar -czf jfrog-platform-x.x.x.tgz jfrog-platform
 
-        After the configuration changes, restart Artifactory by deleting pod of Artifactory
+        3. By temporary direct changes to files
+        
+                1. check ./login-art-pod.sh
+                2. after the changes, restart Artifactory by deleting pod of Artifactory
 
 1.5 Xray DB Sync
         

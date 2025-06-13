@@ -15,14 +15,18 @@ artifactory:
   # systemYamlOverride:
   #   existingSecret: art-system-yaml
   #   dataKey: system.yaml
+  # for resetting password
   # artifactory:
+  #   admin:
+  #     ip: "*"
+  #     username: "admin"
+  #     password: "password"
   #   persistence:
   #     existingClaim: pvc-art
-# below extraSystemYaml not work (2025-06-04, JFROG_CHART_VERSION=10.20.0)
-  extraSystemYaml:
-    jfconnect:
-      enabled: true
-      airgap:
+    extraSystemYaml:
+      jfconnect:
+        enabled: true
+        airgap:
           enabled: true
   nginx:
     service:
