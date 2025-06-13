@@ -4,9 +4,9 @@ artifactory:
   # existingClaim: pvc-art
 ## for resetting password
   # admin:
-    # ip: "*"
-    # username: "admin"
-    # password: "password"
+  #   ip: "*"
+  #   username: "admin"
+  #   password: "password"
   extraSystemYaml:
     jfconnect:
       enabled: true
@@ -18,8 +18,14 @@ nginx:
     enabled: false
   service:
     type: NodePort
-    nodePort: 30080
+    nodePort: 38080
   http:
-    internalPort: 30080
-    externalPort: 30080
+    internalPort: 38080
+    externalPort: 38080
 
+## for helm upgrade to work
+databaseUpgradeReady: true
+
+## skip pre upgrade check to avoid additional image pull when upgrade
+preUpgradeHook:
+  enabled: false

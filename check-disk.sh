@@ -3,7 +3,7 @@
 source common.sh
 
 echo
-echo "check storage status"
+echo "check disk status"
 echo "----------------------------------------------------"
 du -sh $K3S_DATA_DIR
 
