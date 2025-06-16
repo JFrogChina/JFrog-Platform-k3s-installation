@@ -3,7 +3,7 @@ echo "kfs common start"
 echo "****************************************************"
 
 echo
-echo "the ENABLED versions defined in version.json to install"
+echo "the ENABLED version defined in version.json to install"
 echo
 
 VERSIONS_FILE="version.json"
