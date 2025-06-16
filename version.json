@@ -8,11 +8,7 @@
         },
         { 
           "JFROG_PLATFORM_CHART_VERSION": "10.20.0",
-          "NOTE": "tested in many POC in airgap env, but found nuget build info lacking of sha256 issue, no scan result"
-        },
-        { 
-          "JFROG_PLATFORM_CHART_VERSION": "10.20.4",
-          "NOTE": "found nuget build info lacking of sha256 issue"
+          "NOTE": "tested in many POC in airgap env"
         },
         { 
           "JFROG_PLATFORM_CHART_VERSION": "11.0.3",
@@ -21,10 +17,6 @@
         { 
           "JFROG_PLATFORM_CHART_VERSION": "11.x.x ~ 11.1.5",
           "NOTE": "activate xray license page blank ..."
-        },
-        { 
-          "ART_CHART_VERSION": "107.111.7",
-          "NOTE": "found nuget build info lacking of sha256 issue"
         }
       ]
     },
