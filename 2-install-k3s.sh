@@ -14,6 +14,11 @@ free -h
 df -h
 sestatus
 
+# redhat 10 on ali cloud
+systemctl stop nm-cloud-setup.service
+systemctl disable nm-cloud-setup.service
+
+
 echo
 echo "2. install k3s"
 echo "----------------------------------------------------"

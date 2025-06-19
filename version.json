@@ -72,11 +72,11 @@
       "ENABLED": false,
       "NAMESPACE": "jp",
       "JFROG_PLATFORM_CHART_VERSION": "10.20.0",
-      "DESC": "this is to test install on RHEL 8.10, result is NOT Work, install k3s error! ",
+      "DESC": "RHEL 8.10 works",
 
       "K3S_ARCH": "amd64",
       "K3S_VERSION": "v1.27.16",
-      "K3S_DESC": "RHEL 8.10 - https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-27/",
+      "K3S_DESC": "RHEL 8.7 ~ 9.4 - https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-27/",
       
       "HELM_OS": "linux",
       "HELM_ARCH": "amd64",
