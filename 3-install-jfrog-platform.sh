@@ -1,3 +1,5 @@
+#!/bin/bash
+# bash is required by (envsubst < ./custom/external-pg.yaml)
 
 # include common
 source common.sh
@@ -18,9 +20,33 @@ kubectl create namespace $NAMESPACE
 # kubectl apply -n $NAMESPACE -f ./pvc.yaml
 
 # install / upgrade
-# NOTICE
+
 cd $DOWNLOAD_DIR_JFROG
-helm upgrade --install jfrog-platform --namespace $NAMESPACE ./jfrog-platform-$JFROG_PLATFORM_CHART_VERSION.tgz -f ./custom/jfrog-platform-custom-values.yaml
+
+if [ "$#" -eq 0 ]; then
+    helm upgrade --install jfrog-platform --namespace $NAMESPACE ./jfrog-platform-$JFROG_PLATFORM_CHART_VERSION.tgz -f ./custom/jfrog-platform-custom-values.yaml
+else
+    for item in "$@"; do
+        case "$item" in
+            ex-db)
+
+                echo
+                : "${PG_HOST:?PG_HOST is required}"
+                : "${KFS_PASSWORD:?KFS_PASSWORD is required}"
+
+                helm upgrade --install jfrog-platform --namespace $NAMESPACE ./jfrog-platform-$JFROG_PLATFORM_CHART_VERSION.tgz -f ./custom/jfrog-platform-custom-values.yaml \
+                -f <(envsubst < ./custom/external-pg.yaml)
+
+                ;;
+            xxx)
+                echo "param: $item"
+                ;;
+            *)
+                echo "⚠️ invalid param: $item, skip"
+                ;;
+        esac
+    done
+fi
 
 echo
 echo "check pv"

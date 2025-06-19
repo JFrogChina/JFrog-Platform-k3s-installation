@@ -1,0 +1,36 @@
+global:
+  database:
+    initDBCreation: false
+postgresql:
+  enabled: false
+artifactory:
+  database:
+    type: postgresql
+    driver: org.postgresql.Driver
+    user: kfs_user
+    url: 'jdbc:postgresql://${PG_HOST}:30432/kfs_artifactory'
+    password: ${KFS_PASSWORD}
+xray:
+  database:
+    url: 'postgres://${PG_HOST}:30432/kfs_xray?sslmode=disable'
+    user: kfs_user
+    password: ${KFS_PASSWORD}
+# distribution:
+#   database:
+#     url: 'jdbc:postgresql://${POSTGRESQL_HOST}:${POSTGRESQL_PORT}/${DISTRIBUTION_DATABASE}?sslmode=disable'
+#     user: ${DISTRIBUTION_DATABASE_USER}
+#     password: ${DISTRIBUTION_DATABASE_PASSWORD}
+# insight:
+#   database:
+#     url: 'jdbc:postgresql://${POSTGRESQL_HOST}:${POSTGRESQL_PORT}/${INSIGHT_DATABASE}'
+#     user: ${INSIGHT_DATABASE_USER}
+#     password: ${INSIGHT_DATABASE_PASSWORD}
+# pipelines:
+#   global:
+#     postgresql:
+#       user: ${PIPELINES_DATABASE_USER}
+#       password: ${PIPELINES_DATABASE_PASSWORD}
+#       host: ${POSTGRESQL_HOST}
+#       port: 5432
+#       database: ${PIPELINES_DATABASE}
+#       ssl: false / true

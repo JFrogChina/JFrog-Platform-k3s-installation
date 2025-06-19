@@ -31,6 +31,10 @@ cd $DOWNLOAD_DIR_JFROG
 helm upgrade --install xray --namespace jp ./xray-$XRAY_CHART_VERSION.tgz -f ./custom/xray-custom-values.yaml \
 --set xray.jfrogUrl="$$JFROG_URL" \
 --set xray.joinKey="$JOIN_KEY" 
+# --set postgresql.enabled="false" \
+# --set database.url="postgres://$PG_HOST:5432/kfs_xray?sslmode=disable" \
+# --set database.user="kfs_user" \
+# --set database.password="$KFS_PASSWORD"
 
 echo
 echo "check pv"
