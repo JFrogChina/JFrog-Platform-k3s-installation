@@ -15,6 +15,10 @@ kfs = k3s + jfrog platform
 2. Installation can be as simple as copying a single file into the airgap environment
 3. Even all the demo configurations made in your simulated installation environment can be preserved
 
+## Architecture
+
+<img src="./guide/kfs.png" style="width: 800px;" >
+
 ## Supported Systems
 
 1. jfrog supported system = e.g. RHEL 8.x, 9.x
