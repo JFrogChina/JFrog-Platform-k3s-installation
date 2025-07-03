@@ -28,7 +28,7 @@ combo=$(awk '
 
 if [ -z "$combo" ]; then
     echo "❌ cannot find any "ENABLED": true in version.json"
-    return 1
+    exit 1
 fi
 
 tmpfile=$(mktemp)

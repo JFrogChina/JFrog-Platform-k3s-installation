@@ -6,6 +6,14 @@ echo
 echo "install pg"
 echo "****************************************************"
 
+echo
+echo "KFS_PASSWORD=$KFS_PASSWORD"
+
+if [ -z "$KFS_PASSWORD" ]; then
+  echo "❌ KFS_PASSWORD not found, please set and try again"
+  exit 1
+fi
+
 helm repo add bitnami https://charts.bitnami.com/bitnami
 # helm repo update
 # helm search repo bitnami/postgresql --versions | head
@@ -13,9 +21,6 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 
 echo
 kubectl create namespace $NAMESPACE-pg
-
-echo
-echo "KFS_PASSWORD=$KFS_PASSWORD"
 
 echo
 helm upgrade --install postgresql \
