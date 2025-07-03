@@ -46,6 +46,7 @@ kfs = k3s + jfrog platform
         e.g. 
         v1.24.10 = RHEL 8.4 ~ 8.6
         v1.25.14 = RHEL 8.5 ~ 8.8
+        v1.27.16 = RHEL 8.7 ~ 9.4
 
         | Simulated installation environment (non-airgap) | Target installation environment (airgap) | Support |
 
