@@ -32,6 +32,10 @@ fi
 echo
 echo "uninstall k3s end"
 echo "****************************************************"
+echo "*          kfs = k3s + jfrog platform!             *"
+echo "*  Notice: If you want to reinstall,               *"
+echo "*  please start again by executing ./1-download.sh *"
+echo "****************************************************"
 
 
 
