@@ -33,14 +33,14 @@ echo "3. set the environment variables PG_HOST and KFS_PASSWORD"
 echo "4. ./3-install-jfrog-platform.sh"
 
 echo
-echo "use the internal database? (y/n)"
+echo "use the internal database? (y/n, default is y)"
 
 read -r choice
-if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
-    echo "you have chosen to use the internal database"
+if [ -z "$choice" ] || [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
+    echo "you have chosen y"
     helm upgrade --install jfrog-platform --namespace $NAMESPACE ./jfrog-platform-$JFROG_PLATFORM_CHART_VERSION.tgz -f ./custom/jfrog-platform-custom-values.yaml
 else
-    echo "you have chosen to use an external database"
+    echo "you have chosen n"
     echo
     : "${PG_HOST:?PG_HOST is required}"
     : "${KFS_PASSWORD:?KFS_PASSWORD is required}"

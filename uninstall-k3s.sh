@@ -21,12 +21,15 @@ echo "3. clear k3s data dir"
 echo "----------------------------------------------------"
 # https://mrkandreev.name/snippets/how_to_move_k3s_data_to_another_location/
 # https://www.davidprat.com/k3s-etcd-backups-and-snapshots-explained/
-echo "clear k3s data dir? (y/n)"
+echo "clear k3s data dir? (y/n, default is y)"
 read -r choice
     
-if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
+if [ -z "$choice" ] || [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
+    echo "you have chosen y"
     rm -rf $K3S_DATA_DIR/*
     echo "cleared"
+else
+    echo "you have chosen n"
 fi
 
 echo

@@ -36,14 +36,16 @@ echo
 echo "2. delete namespace $NAMESPACE"
 echo "----------------------------------------------------"
 
-echo "delete namespace $NAMESPACE (all data will be lost)? (y/n)"
+echo "delete namespace $NAMESPACE (all data will be lost)? (y/n, default is n)"
 read -r choice
-if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
+if [ -z "$choice" ] || [ "$choice" = "n" ] || [ "$choice" = "N" ]; then
+    echo "you have chosen n"
+    echo "not to delete"
+else
+    echo "you have chosen y"
     echo "delete namespace, please wait ..."
     # all will lost
     kubectl delete ns $NAMESPACE
-else
-    echo "not to delete"
 fi
 
 echo

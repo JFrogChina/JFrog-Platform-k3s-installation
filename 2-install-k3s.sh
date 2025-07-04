@@ -53,12 +53,14 @@ file_path="$DOWNLOAD_DIR_JFROG/jfrog-images.tar"
 if [ -f "$file_path" ]; then
     echo "file found in local: $file_path"
 
-    echo "import jfrog images? (y/n)"
+    echo "import jfrog images? (y/n, default is y)"
     read -r choice
-    if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
+    if [ -z "$choice" ] || [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
+        echo "you have chosen y"
         echo "import jfrog, please wait ..."
         ctr images import $file_path
     else
+        echo "you have chosen n"
         echo "not to import"
     fi
 else
