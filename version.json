@@ -57,7 +57,7 @@
       "ENABLED": true,
       "NAMESPACE": "jp",
       "JFROG_PLATFORM_CHART_VERSION": "11.1.2",
-      "DESC": "install success, not fully tested",
+      "DESC": "install success, no xray license page, use e+ license",
 
       "K3S_ARCH": "amd64",
       "K3S_VERSION": "v1.25.16",
