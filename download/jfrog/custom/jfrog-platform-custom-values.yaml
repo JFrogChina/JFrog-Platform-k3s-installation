@@ -23,7 +23,7 @@ artifactory:
         enabled: true
         airgap:
           enabled: true
-## for resetting password
+## for resetting password, add a new blank line to make sure kubectl detects its change
     # admin:
       # ip: "*"
       # username: "admin"
