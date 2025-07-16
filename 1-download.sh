@@ -136,18 +136,10 @@ download_jfrog() {
         echo "XRAY_CHART_VERSION=$XRAY_CHART_VERSION"
 
         if [ -n "$JFROG_PLATFORM_CHART_VERSION" ] || [ -n "$ART_CHART_VERSION" ] || [ -n "$XRAY_CHART_VERSION" ]; then
-        
+            
             file_path_jfrog="$DOWNLOAD_DIR_JFROG/jfrog-platform-$JFROG_PLATFORM_CHART_VERSION.tgz"
             file_path_art="$DOWNLOAD_DIR_JFROG/artifactory-$ART_CHART_VERSION.tgz"
             file_path_xray="$DOWNLOAD_DIR_JFROG/xray-$XRAY_CHART_VERSION.tgz"
-
-            if [ ! -f "$file_path_jfrog" ] || [ ! -f "$file_path_art" ] || [ ! -f "$file_path_xray" ]; then
-                echo
-                echo "some file not found in local, prepare to download..."
-                echo
-                helm repo add jfrog https://charts.jfrog.io 
-                helm repo update jfrog
-            fi
 
             # download jfrog-platform
             if [ -n "$JFROG_PLATFORM_CHART_VERSION" ]; then
@@ -157,6 +149,9 @@ download_jfrog() {
                     echo "file found in local: $file_path"
                 else
                     echo "$file_path not found, start download..."
+
+                    helm repo add jfrog https://charts.jfrog.io 
+                    helm repo update jfrog
 
                     cd $DOWNLOAD_DIR_JFROG
                     helm pull jfrog/jfrog-platform --version=$JFROG_PLATFORM_CHART_VERSION
@@ -172,6 +167,9 @@ download_jfrog() {
                 else
                     echo "$file_path not found, start download..."
 
+                    helm repo add jfrog https://charts.jfrog.io 
+                    helm repo update jfrog
+
                     cd $DOWNLOAD_DIR_JFROG
                     helm pull jfrog/artifactory --version=$ART_CHART_VERSION
                 fi
@@ -186,11 +184,13 @@ download_jfrog() {
                 else
                     echo "$file_path not found, start download..."
 
+                    helm repo add jfrog https://charts.jfrog.io 
+                    helm repo update jfrog
+
                     cd $DOWNLOAD_DIR_JFROG
                     helm pull jfrog/xray --version=$XRAY_CHART_VERSION
                 fi
             fi
-
         else
             echo "no jfrog helm chart values defined, skip download"
         fi

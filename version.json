@@ -39,7 +39,7 @@
     },
     {
       "ID": "2024-11-05",
-      "ENABLED": true,
+      "ENABLED": false,
       "NAMESPACE": "jp",
       "JFROG_PLATFORM_CHART_VERSION": "10.20.0",
       "DESC": "",
@@ -54,7 +54,7 @@
     },
     {
       "ID": "2025-06-06",
-      "ENABLED": false,
+      "ENABLED": true,
       "NAMESPACE": "jp",
       "JFROG_PLATFORM_CHART_VERSION": "11.1.2",
       "DESC": "install success, not fully tested",
