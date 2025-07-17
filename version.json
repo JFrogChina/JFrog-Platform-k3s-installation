@@ -27,7 +27,7 @@
       "JFROG_PLATFORM_CHART_VERSION": "11.0.0",
       "ART_CHART_VERSION": "107.111.7",
       "XRAY_CHART_VERSION": "103.118.13",
-      "DESC": "this is to install jfrog into your EXISTING k8s from your mac, then visit jfrog from http://localhost:xxxx or ./check-svc.sh to have LB/NodePost IP",
+      "DESC": "this config does not define K3S & HELM, directly use ./3-install-xxx.sh to install jfrog into your EXISTING k8s from your mac, then visit jfrog from http://localhost:xxxx or ./check-svc.sh to have LB/NodePost IP",
       
       "K3S_ARCH": "",
       "K3S_VERSION": "",

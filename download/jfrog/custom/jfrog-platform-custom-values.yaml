@@ -12,6 +12,9 @@
 
 artifactory:
   enabled: true
+## enable mission-control, to manage license bucket
+  mc:
+    enabled: true
   artifactory:
     # systemYamlOverride:
     #   existingSecret: art-system-yaml
@@ -36,7 +39,6 @@ artifactory:
     https:
       externalPort: 8443
     # tlsSecretName: my-tls
-
 xray:
   enabled: true
   # xray:
