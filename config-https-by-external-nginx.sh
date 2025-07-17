@@ -1,5 +1,5 @@
 
-# if uss an external nginx
+# if use an external nginx
 # the external nginx 443 > k3s's internal nginx with 8443
 
 server {
