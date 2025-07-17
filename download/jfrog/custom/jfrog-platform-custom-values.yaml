@@ -41,10 +41,15 @@ artifactory:
     # tlsSecretName: my-tls
 xray:
   enabled: true
-  # xray:
+  xray:
     # systemYamlOverride:
     #   existingSecret: xray-system-yaml
     #   dataKey: system.yaml
+    extraSystemYaml:
+      server:
+        dbSync:
+          impactAnalysis:
+            enabled: true
 ## for jas (serviceAccount & rbac)
   serviceAccount:
     create: true
