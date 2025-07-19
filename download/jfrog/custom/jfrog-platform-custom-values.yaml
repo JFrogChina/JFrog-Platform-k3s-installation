@@ -50,6 +50,9 @@ xray:
         dbSync:
           impactAnalysis:
             enabled: true
+        logging:
+          application:
+            level: info
 ## for jas (serviceAccount & rbac)
   serviceAccount:
     create: true
