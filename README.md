@@ -135,12 +135,12 @@ kfs = k3s + jfrog platform
 
                 You can execute this script repeatedly to see its startup status. It usually takes several minutes until all pods become running.
 
-        ./5-package.sh
+        ./4.1-pull-upgrade-check-image.sh
 
                 ⚠️ Important
-                Before performing this step:
+                Update & execute this script, this will ensure that you do not lose this image later when you package the installation package and perform the upgrade in an isolated environment, because during the upgrade it will try to pull a new Docker image to perform pre-upgrade checks. 
 
-                You should execute ./3-install-xxx.sh again to test the upgrade process, because during the upgrade it will try to pull a new Docker image to perform pre-upgrade checks. This will ensure that you do not lose this image later when you package the installation package and perform the upgrade in an isolated environment.
+        ./5-package.sh
 
                 ⚠️ Important
                 When you perform this step:
