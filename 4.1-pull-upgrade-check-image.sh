@@ -3,8 +3,6 @@
 source common.sh
 
 
-# upgrade pre check image
-
 # "JFROG_PLATFORM_CHART_VERSION": "10.20.0"
 KUBECTL_VERSION=1.24.12
 
@@ -28,8 +26,5 @@ KUBECTL_VERSION=1.24.12
         ctr image ls | grep kubectl
         ctr image export $DOWNLOAD_DIR_JFROG/kubectl_$KUBECTL_VERSION.tar releases-docker.jfrog.io/bitnami/kubectl:$KUBECTL_VERSION        
 
-# 4. import in airgap vm
-
-        # ctr image import /path/to/save/kubectl_$KUBECTL_VERSION.tar
 
 
