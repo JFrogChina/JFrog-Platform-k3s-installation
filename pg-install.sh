@@ -6,6 +6,11 @@ echo
 echo "install pg"
 echo "****************************************************"
 
+PG_NAMESPACE=$NAMESPACE-pg
+
+echo 
+echo "PG_NAMESPACE=$PG_NAMESPACE"
+
 echo
 echo "KFS_PASSWORD=$KFS_PASSWORD"
 
@@ -20,7 +25,7 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 # helm pull bitnami/postgresql --version 13.2.24
 
 echo
-kubectl create namespace $NAMESPACE-pg
+kubectl create namespace $PG_NAMESPACE
 
 echo
 helm upgrade --install postgresql \
@@ -28,12 +33,12 @@ helm upgrade --install postgresql \
 --set primary.persistence.size=300Gi \
 --set primary.service.type=NodePort \
 --set primary.service.nodePorts.postgresql=30432 \
---namespace $NAMESPACE-pg \
+--namespace $PG_NAMESPACE \
 bitnami/postgresql --version 13.2.24 #--set-string primary.nodeSelector.kfs_pg=true
 # upgrade will not remove the nodeSelector
 
-export NODE_IP=$(kubectl get nodes --namespace $NAMESPACE-pg -o jsonpath="{.items[0].status.addresses[0].address}")
-export NODE_PORT=$(kubectl get --namespace $NAMESPACE-pg -o jsonpath="{.spec.ports[0].nodePort}" services postgresql)
+export NODE_IP=$(kubectl get nodes --namespace $PG_NAMESPACE -o jsonpath="{.items[0].status.addresses[0].address}")
+export NODE_PORT=$(kubectl get --namespace $PG_NAMESPACE -o jsonpath="{.spec.ports[0].nodePort}" services postgresql)
 
 echo
 echo "NODE_IP=$NODE_IP"
@@ -45,12 +50,12 @@ echo "PGPASSWORD="$KFS_PASSWORD" psql --host $NODE_IP --port $NODE_PORT -U postg
 echo "****************************************************"
 
 # check
-kubectl get pod -n $NAMESPACE-pg
+kubectl get pod -n $PG_NAMESPACE
 
 # if Failed to pull image "docker.io/bitnami/postgresql:16.1.0-debian-11-r15
 
 # check node
-# kubectl get pod -n $NAMESPACE-pg -o wide
+# kubectl get pod -n $PG_NAMESPACE -o wide
 
 # login node
 # ssh $NODE_IP

@@ -11,11 +11,16 @@ KUBECTL_VERSION=1.24.12
 
 # 1. check image
 
-        # search 'kubectl' in values.yaml of chart
-        
-        # or check upgrade's error pod
-        # e.g. kubectl describe pod/jfrog-platform-xxx-pre-xxx
-        # releases-docker.jfrog.io/bitnami/kubectl:1.31.2
+        echo 
+        echo "KUBECTL_VERSION=$KUBECTL_VERSION"
+        echo "to update the version:"
+        echo "search 'kubectl' in values.yaml of chart"
+        echo 
+        echo "or check upgrade's error pod"
+        echo 
+        echo "e.g. kubectl describe pod/jfrog-platform-xxx-pre-xxx"
+        echo "releases-docker.jfrog.io/bitnami/kubectl:1.31.2"
+        echo 
 
 # 2. pull in internet vm
 

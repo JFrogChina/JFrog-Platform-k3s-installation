@@ -1,30 +1,12 @@
 [
     {
-      "README": "set ENABLED to true, the FIRST ENABLED will be used",
-      "JFROG_CHART_NOTES": [
-        { 
-          "JFROG_PLATFORM_CHART_VERSION": "10.19.6",
-          "NOTE": "xray helm chart error with old helm version, helm version is already upgraded"
-        },
-        { 
-          "JFROG_PLATFORM_CHART_VERSION": "10.20.0",
-          "NOTE": "tested in many POC in airgap env"
-        },
-        { 
-          "JFROG_PLATFORM_CHART_VERSION": "11.0.3",
-          "NOTE": "this has catalog included, but not tested yet"
-        },
-        { 
-          "JFROG_PLATFORM_CHART_VERSION": "11.x.x ~ 11.1.5",
-          "NOTE": "activate xray license page blank ..."
-        }
-      ]
+      "README": "set ENABLED to true, the FIRST ENABLED will be used"
     },
     {
-      "ID": "2025-06-12",
+      "ID": "2025-xx-xx",
       "ENABLED": false,
       "NAMESPACE": "jp",
-      "JFROG_PLATFORM_CHART_VERSION": "11.0.0",
+      "JFROG_PLATFORM_CHART_VERSION": "11.1.2",
       "ART_CHART_VERSION": "107.111.7",
       "XRAY_CHART_VERSION": "103.118.13",
       "DESC": "this config does not define K3S & HELM, directly use ./3-install-xxx.sh to install jfrog into your EXISTING k8s from your mac, then visit jfrog from http://localhost:xxxx or ./check-svc.sh to have LB/NodePost IP",
@@ -38,11 +20,11 @@
       "HELM_VERSION": ""
     },
     {
-      "ID": "2024-11-05",
+      "ID": "2024-10-25",
       "ENABLED": false,
       "NAMESPACE": "jp",
-      "JFROG_PLATFORM_CHART_VERSION": "10.20.0",
-      "DESC": "",
+      "JFROG_PLATFORM_CHART_VERSION": "10.19.6",
+      "DESC": "xray helm chart error with old helm version, helm version is already upgraded",
       
       "K3S_ARCH": "amd64",
       "K3S_VERSION": "v1.24.10",
@@ -53,15 +35,15 @@
       "HELM_VERSION": "v3.17.1"
     },
     {
-      "ID": "2025-06-06",
-      "ENABLED": true,
+      "ID": "2024-11-05",
+      "ENABLED": false,
       "NAMESPACE": "jp",
-      "JFROG_PLATFORM_CHART_VERSION": "11.1.2",
-      "DESC": "install success, no xray license page, use e+ license",
-
+      "JFROG_PLATFORM_CHART_VERSION": "10.20.0",
+      "DESC": "tested in many POC in airgap env",
+      
       "K3S_ARCH": "amd64",
-      "K3S_VERSION": "v1.25.16",
-      "K3S_DESC": "RHEL 8.5 ~ 8.8 - https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-25/",
+      "K3S_VERSION": "v1.24.10",
+      "K3S_DESC": "RHEL 8.4 ~ 8.6 - https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-24/",
 
       "HELM_OS": "linux",
       "HELM_ARCH": "amd64",
@@ -72,12 +54,27 @@
       "ENABLED": false,
       "NAMESPACE": "jp",
       "JFROG_PLATFORM_CHART_VERSION": "10.20.0",
-      "DESC": "RHEL 8.10 works",
+      "DESC": "this is to test RHEL 8.10, it works with k3s v1.27.16",
 
       "K3S_ARCH": "amd64",
       "K3S_VERSION": "v1.27.16",
       "K3S_DESC": "RHEL 8.7 ~ 9.4 - https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-27/",
       
+      "HELM_OS": "linux",
+      "HELM_ARCH": "amd64",
+      "HELM_VERSION": "v3.17.1"
+    },
+    {
+      "ID": "2025-07-24",
+      "ENABLED": true,
+      "NAMESPACE": "jp",
+      "JFROG_PLATFORM_CHART_VERSION": "11.1.2",
+      "DESC": "11.x.x ~ 11.1.8 issues: 1. activate xray license page blank, use E+ license 2. xray db offline sync block",
+
+      "K3S_ARCH": "amd64",
+      "K3S_VERSION": "v1.25.16",
+      "K3S_DESC": "RHEL 8.5 ~ 8.8 - https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-25/",
+
       "HELM_OS": "linux",
       "HELM_ARCH": "amd64",
       "HELM_VERSION": "v3.17.1"

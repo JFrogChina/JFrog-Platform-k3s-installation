@@ -6,11 +6,16 @@ echo
 echo "connect pg"
 echo "****************************************************"
 
+PG_NAMESPACE=$NAMESPACE-pg
+
+echo 
+echo "PG_NAMESPACE=$PG_NAMESPACE"
+
 # connect
 kubectl run postgresql-client \
   --rm --tty -i \
   --restart='Never' \
-  --namespace $NAMESPACE-pg \
+  --namespace $PG_NAMESPACE \
   --image docker.io/bitnami/postgresql:16.1.0-debian-11-r15 \
   --env="PGPASSWORD=$KFS_PASSWORD" \
   --overrides='{
