@@ -235,3 +235,31 @@ kfs = k3s + jfrog platform
         ./4-check-and-listen.sh
 
 <img src="./guide/5.png" style="width: 800px;" > 
+
+
+## Trouble shooting
+### Xray db sync pending
+
+- Delete the content of the update_state table 
+
+
+```
+❯ kubectl exec -it  jfrog-platform-postgresql-0 -n alex bash
+I have no name!@jfrog-platform-postgresql-0:/$ psql -U xray
+Password for user xray: (xray)
+psql (16.6)
+Type "help" for help.
+
+delete from updates_state;
+exit;
+```
+
+- Restart Xray
+```
+kubectl delete pod jfrog-platform-xray-0 -n alex
+```
+
+- Monitoring the logs for Xray
+```
+kubectl logs -n jfrog-platform jfrog-platform-xray-0 -c xray-server -n alex -f
+```
