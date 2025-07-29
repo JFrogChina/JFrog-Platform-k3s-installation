@@ -98,7 +98,7 @@ kfs = k3s + jfrog platform
 
         ⚠️ Important
         Please execute these scripts in a path with sufficient disk space. 
-        The data of running k3s will be stored in the ./kfs/k3s-data-dir directory.
+        The data of running k3s will be stored in the ./k3s-data-dir directory.
         The Imported Xray vulnerability database will occupy about 100GB~200GB.
 
         ./1-download.sh
@@ -163,10 +163,10 @@ kfs = k3s + jfrog platform
         There are several ways to make changes:
         1. By configuring custom-values.yaml (the best way)
 
-                ls ./kfs/download/jfrog/custom/custom-values.yaml
+                ls ./download/jfrog/custom/custom-values.yaml
                 check extraSystemYaml in it
    
-                it will merge with ./kfs/download/jfrog/jfrog-platform/charts/artifactory/files/system.yaml
+                it will merge with ./download/jfrog/jfrog-platform/charts/artifactory/files/system.yaml
                 
                 if update the source file
                 tar -czf jfrog-platform-x.x.x.tgz jfrog-platform
@@ -199,7 +199,7 @@ kfs = k3s + jfrog platform
 
         ⚠️ Important
         Please execute these scripts in a path with sufficient disk space. 
-        The data of running k3s will be stored in the ./kfs/k3s-data-dir directory.
+        The data of running k3s will be stored in the ./k3s-data-dir directory.
         The Imported Xray vulnerability database will occupy about 100GB~200GB.
         
         ./1-download.sh
@@ -242,24 +242,20 @@ kfs = k3s + jfrog platform
 
 - Delete the content of the update_state table 
 
+        ./login-pg-pod.sh
 
-```
-❯ kubectl exec -it  jfrog-platform-postgresql-0 -n alex bash
-I have no name!@jfrog-platform-postgresql-0:/$ psql -U xray
-Password for user xray: (xray)
-psql (16.6)
-Type "help" for help.
+        I have no name!@jfrog-platform-postgresql-0:/$ psql -U xray
+        Password for user xray: (xray)
+        psql (16.6)
+        Type "help" for help.
 
-delete from updates_state;
-exit;
-```
+        delete from updates_state;
+        exit;
 
 - Restart Xray
-```
-kubectl delete pod jfrog-platform-xray-0 -n alex
-```
+
+        ./restart-xray.sh
 
 - Monitoring the logs for Xray
-```
-kubectl logs -n jfrog-platform jfrog-platform-xray-0 -c xray-server -n alex -f
-```
+
+        ./check-xray-log.sh
