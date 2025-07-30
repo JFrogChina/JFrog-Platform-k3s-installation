@@ -1,4 +1,12 @@
-# postgresql:
+postgresql:
+  primary:
+    resources:
+      requests:
+        cpu: 2
+        memory: 512Mi
+      limits:
+        cpu: 3
+        memory: 2Gi
 #   persistence:
 #     existingClaim: pvc-pg
 #   volumePermissions:
@@ -53,6 +61,14 @@ xray:
         logging:
           application:
             level: info
+  server:
+    resources:
+      requests:
+        cpu: 2
+        memory: 512Mi
+      limits:
+        cpu: 3
+        memory: 2Gi
 ## for jas (serviceAccount & rbac)
   serviceAccount:
     create: true
