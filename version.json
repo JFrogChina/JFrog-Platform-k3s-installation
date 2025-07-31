@@ -69,7 +69,7 @@
       "ENABLED": true,
       "NAMESPACE": "jp",
       "JFROG_PLATFORM_CHART_VERSION": "11.1.2",
-      "DESC": "11.x.x ~ 11.1.8 issues: 1. activate xray license page blank, use E+ license 2. xray db offline sync block",
+      "DESC": "11.x.x ~ 11.1.8 issues: 1. activate xray license page blank, use E+ license 2. xray db offline sync block, need to adjust resource limit of pg",
 
       "K3S_ARCH": "amd64",
       "K3S_VERSION": "v1.25.16",
