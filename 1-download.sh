@@ -150,6 +150,7 @@ download_jfrog() {
                 else
                     echo "$file_path not found, start download..."
 
+                    echo "helm repo add & update jfrog - for jfrog-platform chart"
                     helm repo add jfrog https://charts.jfrog.io 
                     helm repo update jfrog
 
@@ -167,6 +168,7 @@ download_jfrog() {
                 else
                     echo "$file_path not found, start download..."
 
+                    echo "helm repo add & update jfrog - for art chart"
                     helm repo add jfrog https://charts.jfrog.io 
                     helm repo update jfrog
 
@@ -184,6 +186,7 @@ download_jfrog() {
                 else
                     echo "$file_path not found, start download..."
 
+                    echo "helm repo add & update jfrog - for xray chart"
                     helm repo add jfrog https://charts.jfrog.io 
                     helm repo update jfrog
 

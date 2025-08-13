@@ -81,10 +81,25 @@
     },
     {
       "ID": "2025-08-07",
-      "ENABLED": true,
+      "ENABLED": false,
       "NAMESPACE": "jp",
       "JFROG_PLATFORM_CHART_VERSION": "11.1.2",
       "DESC": "try to POC with new jfrog helm chart version and new red hat version",
+
+      "K3S_ARCH": "amd64",
+      "K3S_VERSION": "v1.27.16",
+      "K3S_DESC": "RHEL 8.7 ~ 9.4 - https://www.suse.com/suse-k3s/support-matrix/all-supported-versions/k3s-v1-27/",
+      
+      "HELM_OS": "linux",
+      "HELM_ARCH": "amd64",
+      "HELM_VERSION": "v3.17.1"
+    },
+    {
+      "ID": "2025-08-13",
+      "ENABLED": true,
+      "NAMESPACE": "jp",
+      "JFROG_PLATFORM_CHART_VERSION": "11.2.0",
+      "DESC": "test catalog with latest version",
 
       "K3S_ARCH": "amd64",
       "K3S_VERSION": "v1.27.16",
