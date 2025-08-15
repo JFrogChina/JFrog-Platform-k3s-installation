@@ -3,23 +3,6 @@
       "README": "set ENABLED to true, the FIRST ENABLED will be used"
     },
     {
-      "ID": "2025-xx-xx",
-      "ENABLED": false,
-      "NAMESPACE": "jp",
-      "JFROG_PLATFORM_CHART_VERSION": "11.1.2",
-      "ART_CHART_VERSION": "107.111.7",
-      "XRAY_CHART_VERSION": "103.118.13",
-      "DESC": "this config does not define K3S & HELM, directly use ./3-install-xxx.sh to install jfrog into your EXISTING k8s from your mac, then visit jfrog from http://localhost:xxxx or ./check-svc.sh to have LB/NodePost IP",
-      
-      "K3S_ARCH": "",
-      "K3S_VERSION": "",
-      "K3S_DESC": "",
-      
-      "HELM_OS": "",
-      "HELM_ARCH": "",
-      "HELM_VERSION": ""
-    },
-    {
       "ID": "2024-10-25",
       "ENABLED": false,
       "NAMESPACE": "jp",
@@ -63,6 +46,23 @@
       "HELM_OS": "linux",
       "HELM_ARCH": "amd64",
       "HELM_VERSION": "v3.17.1"
+    },
+    {
+      "ID": "2025-06-20",
+      "ENABLED": false,
+      "NAMESPACE": "jp",
+      "JFROG_PLATFORM_CHART_VERSION": "11.1.2",
+      "ART_CHART_VERSION": "107.111.7",
+      "XRAY_CHART_VERSION": "103.118.13",
+      "DESC": "about this config: 1. support install art / xray. 2. if install into EXISTING k8s, then K3S is not nesseary, use ./check-svc.sh to check LB/NodePost IP after installation or ./4-check-and-listen.sh & visit from http://localhost:8080",
+      
+      "K3S_ARCH": "",
+      "K3S_VERSION": "",
+      "K3S_DESC": "",
+      
+      "HELM_OS": "",
+      "HELM_ARCH": "",
+      "HELM_VERSION": ""
     },
     {
       "ID": "2025-07-24",
