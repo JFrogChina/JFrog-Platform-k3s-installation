@@ -51,7 +51,7 @@ fi
 
 echo
 echo "check pv"
-kubectl get pv -n $NAMESPACE
+kubectl get pv
 
 echo
 echo "install jfrog-platform end "

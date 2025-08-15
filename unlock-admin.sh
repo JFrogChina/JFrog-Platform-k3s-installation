@@ -8,11 +8,19 @@
 # cd ./k3s-data-dir/storage/pvc-xxx-artifactory...
 # cd var/etc/access
 
-# vi bootstrap.creds
-
+# cat << EOF > bootstrap.creds
 # admin@*=password
-# admin2@*=password2
+# admin1@*=password
+# EOF
+
+# or
+
+# vi bootstrap.creds
+# admin@*=password
+# admin1@*=password
 
 # chmod 600 bootstrap.creds
 # chown 1030:1030 bootstrap.creds
+
+# ./restart-art.sh
 
