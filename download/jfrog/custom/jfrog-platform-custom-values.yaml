@@ -80,7 +80,10 @@ xray:
 
 catalog:
   enabled: true
-  
+  extraSystemYaml:
+    central:
+      url: "https://jfscatalogcentral.jfrog.io"
+
 insight:
   enabled: false
 
