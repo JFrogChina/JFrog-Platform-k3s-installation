@@ -15,6 +15,11 @@ xray:
     url: 'postgres://${PG_HOST}:30432/kfs_xray?sslmode=disable'
     user: kfs_user
     password: ${KFS_PASSWORD}
+catalog:
+  database:
+    url: 'postgres://${PG_HOST}:30432/kfs_catalog?sslmode=disable'
+    user: kfs_user
+    password: ${KFS_PASSWORD}
 # distribution:
 #   database:
 #     url: 'jdbc:postgresql://${POSTGRESQL_HOST}:${POSTGRESQL_PORT}/${DISTRIBUTION_DATABASE}?sslmode=disable'

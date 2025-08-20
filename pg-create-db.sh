@@ -17,6 +17,8 @@ CREATE DATABASE kfs_artifactory WITH OWNER=kfs_user ENCODING='UTF8';
 GRANT ALL PRIVILEGES ON DATABASE kfs_artifactory TO kfs_user;
 CREATE DATABASE kfs_xray WITH OWNER=kfs_user ENCODING='UTF8';
 GRANT ALL PRIVILEGES ON DATABASE kfs_xray TO kfs_user;
+CREATE DATABASE kfs_catalog WITH OWNER=kfs_user ENCODING='UTF8' lc_collate='en_US.utf8' lc_ctype='en_US.utf8' template=template0;
+GRANT ALL PRIVILEGES ON DATABASE kfs_catalog TO kfs_user;
 "
 
 kubectl run postgresql-client \

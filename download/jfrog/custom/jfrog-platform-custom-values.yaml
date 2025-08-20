@@ -78,6 +78,9 @@ xray:
   #   persistence:
   #     existingClaim: pvc-xray
 
+catalog:
+  enabled: true
+  
 insight:
   enabled: false
 
