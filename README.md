@@ -99,7 +99,7 @@ kfs = k3s + jfrog platform
         ⚠️ Important
         Please execute these scripts in a path with sufficient disk space. 
         The data of running k3s will be stored in the ./k3s-data-dir directory.
-        The Imported Xray vulnerability database will occupy about 100GB~200GB.
+        The imported Xray vulnerability database will occupy about 100GB~200GB.
 
         ./1-download.sh
 
