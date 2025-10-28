@@ -39,6 +39,8 @@ artifactory:
       # ip: "*"
       # username: "admin"
       # password: "password"
+## if use mysql, enable artifactory.preStartCommand to download dirver
+    # preStartCommand: "mkdir -p /opt/jfrog/artifactory/var/bootstrap/artifactory/tomcat/lib; cd /opt/jfrog/artifactory/var/bootstrap/artifactory/tomcat/lib && curl -o /opt/jfrog/artifactory/var/bootstrap/artifactory/tomcat/lib/mysql-connector-java-8.0.13.jar https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.13/mysql-connector-java-8.0.13.jar"
   nginx:
     service:
       annotations: {}

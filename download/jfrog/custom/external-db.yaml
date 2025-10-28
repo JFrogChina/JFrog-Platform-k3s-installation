@@ -10,6 +10,14 @@ artifactory:
     user: kfs_user
     url: 'jdbc:postgresql://${PG_HOST}:30432/kfs_artifactory'
     password: ${KFS_PASSWORD}
+## if use mysql, enable artifactory.preStartCommand to download dirver
+  # database:
+  #   allowNonPostgresql: true
+  #   type: mysql
+  #   driver: com.mysql.cj.jdbc.Driver
+  #   user: kfs_user
+  #   url: 'jdbc:mysql://${MYSQL_HOST}:3306/kfs_artifactory?characterEncoding=UTF-8&elideSetAutoCommits=true&useSSL=false'
+  #   password: ${KFS_PASSWORD}
 xray:
   database:
     url: 'postgres://${PG_HOST}:30432/kfs_xray?sslmode=disable'

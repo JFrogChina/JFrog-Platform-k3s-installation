@@ -1,5 +1,5 @@
 #!/bin/bash
-# bash is required by (envsubst < ./custom/external-pg.yaml)
+# bash is required by (envsubst < ./custom/external-db.yaml)
 
 # include common
 source common.sh
@@ -28,7 +28,7 @@ echo "by default, an internal database will be created in the same namespace"
 echo
 echo "to use an external database, you can"
 echo "1. use ./pg-install.sh, ./pg-create-db.sh to create a database in another namespace"
-echo "2. check $DOWNLOAD_DIR_JFROG/custom/external-pg.yaml"
+echo "2. check $DOWNLOAD_DIR_JFROG/custom/external-db.yaml"
 echo "3. set the environment variables PG_HOST and KFS_PASSWORD"
 echo "4. ./3-install-jfrog-platform.sh"
 
@@ -46,7 +46,7 @@ else
     : "${KFS_PASSWORD:?KFS_PASSWORD is required}"
 
     helm upgrade --install jfrog-platform --namespace $NAMESPACE ./jfrog-platform-$JFROG_PLATFORM_CHART_VERSION.tgz -f ./custom/jfrog-platform-custom-values.yaml \
-    -f <(envsubst < ./custom/external-pg.yaml)
+    -f <(envsubst < ./custom/external-db.yaml)
 fi
 
 echo

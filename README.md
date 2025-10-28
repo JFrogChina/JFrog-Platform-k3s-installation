@@ -120,7 +120,7 @@ kfs = k3s + jfrog platform
                 
                 - to use an external database, you can
                 1. use ./pg-install.sh, ./pg-create-db.sh to create a database in another namespace
-                2. check $DOWNLOAD_DIR_JFROG/custom/external-pg.yaml
+                2. check $DOWNLOAD_DIR_JFROG/custom/external-db.yaml
                 3. set the environment variables PG_HOST and KFS_PASSWORD
                 4. ./3-install-jfrog-platform.sh
 
@@ -219,7 +219,7 @@ kfs = k3s + jfrog platform
                 
                 - to use an external database, you can
                 1. use ./pg-install.sh, ./pg-create-db.sh to create a database in another namespace
-                2. check $DOWNLOAD_DIR_JFROG/custom/external-pg.yaml
+                2. check $DOWNLOAD_DIR_JFROG/custom/.yaml
                 3. set the environment variables PG_HOST and KFS_PASSWORD
                 4. ./3-install-jfrog-platform.sh
 
