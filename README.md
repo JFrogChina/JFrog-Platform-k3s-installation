@@ -3,7 +3,24 @@
 
 kfs = k3s + jfrog platform
 
-## Problems
+## Quickstart
+
+- Online (has internet):
+  1. `./uninstall-docker.sh` (if Docker/Containerd already installed)
+  2. Edit `version.json` → set the combo you want to `ENABLED: true`
+  3. `./1-download.sh` → downloads k3s/helm/jfrog charts
+  4. `./2-install-k3s.sh`
+  5. `./3-install-jfrog-platform.sh` (or `./3-install-art.sh`, `./3-install-xray.sh`)
+  6. `./4-check-and-listen.sh`
+  7. (Optional) `./4.1-pull-upgrade-check-image.sh`
+  8. (Optional) `./5-package.sh`
+
+- Air-gapped target:
+  1. On an online box run steps 1–7 above, then `./5-package.sh`
+  2. Copy `~/kfs.tar.gz` to the offline host and extract
+  3. Run `./1-download.sh` (copy stage only), `./2-install-k3s.sh`, `./3-install-xxx.sh`, `./4-check-and-listen.sh`
+
+## Problems it solves
 
 1. More and more components(e.g. Artifactory, Xray, JAS) are increasingly complex to install separately, while k3s + jfrog platform is simple
 2. k3s + jfrog platform installation requires many docker images, and the customer environment may be airgap
@@ -67,6 +84,18 @@ kfs = k3s + jfrog platform
         | Artifactory                                         | 4C8G               | 40G  |
         | Artifactory + Security (Xray/JAS/...) - Minimum     | 8C16G              | 300G |
         | Artifactory + Security (Xray/JAS/...) - Recommended | 16C32G             | 500G |
+
+## Prerequisites
+
+- OS: RHEL/CentOS 7.9–9.x, Ubuntu 22.04 (match k3s matrix in `version.json`)
+- CPU/RAM/Disk: see “Resource Requirements” above
+- Tools: `helm`, `ctr` (comes with k3s), `tar`, `wget` or `curl`, `jq`, `kubectl` (k3s installs it)
+- Verify versions:
+  - `helm version`
+  - `ctr version`
+  - `kubectl version --client`
+  - `jq --version`
+  - `tar --version`, `wget --version` or `curl --version`
 
 ## Start Installation
 
@@ -236,6 +265,49 @@ kfs = k3s + jfrog platform
 
 <img src="./guide/5.png" style="width: 800px;" > 
 
+
+## Version Selection (`version.json`)
+
+- Only the first entry with `"ENABLED": true` is used.
+- Keys:
+  - `ID`: identifier for the combo
+  - `ENABLED`: mark the active combo
+  - `NAMESPACE`: namespace to install into
+  - `JFROG_PLATFORM_CHART_VERSION`/`ART_CHART_VERSION`/`XRAY_CHART_VERSION`: chart versions
+  - `K3S_ARCH`/`K3S_VERSION`: k3s binaries to download (empty = skip)
+  - `HELM_OS`/`HELM_ARCH`/`HELM_VERSION`: helm binary to download (empty = skip)
+- Minimal usable example:
+```json
+[
+  {
+    "ID": "2025-08-13",
+    "ENABLED": true,
+    "NAMESPACE": "jp",
+    "JFROG_PLATFORM_CHART_VERSION": "11.2.0",
+    "K3S_ARCH": "amd64",
+    "K3S_VERSION": "v1.27.16",
+    "HELM_OS": "linux",
+    "HELM_ARCH": "amd64",
+    "HELM_VERSION": "v3.17.1"
+  }
+]
+```
+
+To add a new combo, append a block and set `ENABLED` to `true` (only the first true is read).
+
+## Tool Scripts
+
+| Script | Purpose | Key params / env | Input | Output |
+|--------|---------|------------------|-------|--------|
+| `1-download.sh [k3s|helm|jfrog]` | Download k3s/helm/JFrog charts, stage k3s airgap images | `version.json` values | None | Files under `download/`, k3s images into `k3s-data-dir/agent/images/` |
+| `2-install-k3s.sh` | Install k3s using staged bits | `K3S_DATA_DIR` from `common.sh` | Staged k3s files | Running k3s, kubeconfig in `~/.kube/config` |
+| `3-install-jfrog-platform.sh` | Install platform chart (optionally external DB) | `NAMESPACE`, `PG_HOST`, `KFS_PASSWORD` | Chart tgz, optional `custom/external-db.yaml` | Deployed platform release |
+| `3-install-art.sh` | Install Artifactory only | `NAMESPACE` | Chart tgz, `custom/art-custom-values.yaml` | Deployed art release |
+| `3-install-xray.sh <JFROG_URL> <JOIN_KEY>` | Install Xray only | `NAMESPACE` | Chart tgz, `custom/xray-custom-values.yaml`, join key | Deployed xray release |
+| `4-check-and-listen.sh` | Check pods, disk usage, start port-forward | `NAMESPACE`, `K3S_DATA_DIR` | Running cluster | Pod list, port-forward listeners |
+| `4.1-pull-upgrade-check-image.sh` | Pre-pull upgrade check image | `NAMESPACE` | Cluster access | Image pulled into local cache |
+| `5-package.sh` | Export images and pack installation bundle | `NAMESPACE`, `K3S_DATA_DIR` | Running cluster | `~/kfs.tar.gz` |
+| `uninstall-*.sh` | Remove k3s/jfrog/docker | None | Running services | Cleaned services |
 
 ## Trouble shooting
 ### Xray db sync pending
