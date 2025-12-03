@@ -6,12 +6,13 @@ echo
 echo "install artifactory start"
 echo "****************************************************"
 
-kubectl create namespace jp
+# ensure namespace exists (idempotent)
+kubectl create namespace "$NAMESPACE" --dry-run=client -o yaml | kubectl apply -f -
 
 # install / upgrade
 
 cd $DOWNLOAD_DIR_JFROG
-helm upgrade --install artifactory --namespace jp ./artifactory-$ART_CHART_VERSION.tgz -f ./custom/art-custom-values.yaml
+helm upgrade --install artifactory --namespace "$NAMESPACE" ./artifactory-$ART_CHART_VERSION.tgz -f ./custom/art-custom-values.yaml
 # --set postgresql.enabled=false \
 # --set database.type="postgresql" \
 # --set database.driver="org.postgresql.Driver" \
@@ -26,4 +27,3 @@ kubectl get pv -n $NAMESPACE
 echo
 echo "install artifactory end "
 echo "****************************************************"
-
