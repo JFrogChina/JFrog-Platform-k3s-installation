@@ -1,5 +1,6 @@
 [
     {
+      "KFS_VERSION": "1.0.0",
       "README": "set ENABLED to true, the FIRST ENABLED will be used"
     },
     {

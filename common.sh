@@ -2,11 +2,16 @@ echo
 echo "kfs common start"
 echo "****************************************************"
 
+VERSIONS_FILE="version.json"
+
+# read the KFS_VERSION
+KFS_VERSION=$(grep -o '"KFS_VERSION": *"[^"]*"' "$VERSIONS_FILE" | sed 's/.*: *"\([^"]*\)".*/\1/')
 echo
-echo "the ENABLED version defined in version.json to install"
+echo "KFS_VERSION is $KFS_VERSION"
 echo
 
-VERSIONS_FILE="version.json"
+echo "the ENABLED jfrog version defined in "$VERSIONS_FILE" to install"
+echo
 
 # read the first "ENABLED": true
 combo=$(awk '
