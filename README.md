@@ -16,9 +16,9 @@ kfs = k3s + jfrog platform
   8. (Optional) `./5-package.sh`
 
 - Air-gapped target:
-  1. On an online box run steps 1–7 above, then `./5-package.sh`
+  1. On an online box run steps 1–7 above, then `./5-package.sh` (Generates a single, all-in-one installation package `~/kfs.tar.gz`)
   2. Copy `~/kfs.tar.gz` to the offline host and extract
-  3. Run `./1-download.sh` (copy stage only), `./2-install-k3s.sh`, `./3-install-xxx.sh`, `./4-check-and-listen.sh`
+  3. Run `./1-download.sh` (Copy the downloaded files to the installation location), `./2-install-k3s.sh`, `./3-install-xxx.sh`, `./4-check-and-listen.sh`
 
 ## Problems it solves
 
@@ -299,7 +299,7 @@ To add a new combo, append a block and set `ENABLED` to `true` (only the first t
 
 
 ## Trouble shooting
-### Xray db sync pending
+### If Xray db sync pending ()
 
 - Delete the content of the update_state table 
 
