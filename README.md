@@ -114,6 +114,21 @@ kfs = k3s + jfrog platform
 
 To add a new combo, append a block and set `ENABLED` to `true` (only the first true is read).
 
+## Script Explanation
+
+| Script | Purpose | Key params / env | Input | Output |
+|--------|---------|------------------|-------|--------|
+| `1-download.sh` | Download k3s/helm/JFrog Helm Charts| `version.json` values | None | Files under `download/` |
+| `2-install-k3s.sh` | Install k3s | `K3S_DATA_DIR` from `common.sh` | downloaded k3s files | Running k3s, kubeconfig in `~/.kube/config` |
+| `3-install-jfrog-platform.sh` | Install JFrog Platform (optionally external DB) | `NAMESPACE`, `PG_HOST`, `KFS_PASSWORD` | Chart tgz, optional `custom/external-db.yaml` | Deployed JFrog Platform |
+| `3-install-art.sh` | Install JFrog Artifactory only | `NAMESPACE` | Chart tgz, `custom/art-custom-values.yaml` | Deployed JFrog Artifactory |
+| `3-install-xray.sh <JFROG_URL> <JOIN_KEY>` | Install JFrog Xray only | `NAMESPACE` | Chart tgz, `custom/xray-custom-values.yaml`, join URL, join key | Deployed JFrog Xray |
+| `4-check-and-listen.sh` | Check pods, disk usage, start port-forward | `NAMESPACE`, `K3S_DATA_DIR` | Running cluster | Pod list, port-forward listeners |
+| `4.1-pull-upgrade-check-image.sh` | Pull upgrade check image | `NAMESPACE` | Cluster access | Image pulled into `download/` |
+| `5-package.sh` | Export images and pack installation bundle | `NAMESPACE`, `K3S_DATA_DIR` | Running cluster | `~/kfs.tar.gz` |
+| `check-*.sh` | Check the runtime logs and status | None | Running services | Logs and Status |
+| `uninstall-*.sh` | Remove k3s/jfrog/docker | None | Running services | Cleaned services |
+
 ## Start Installation
 
 ### 1. Enter the simulated installation environment (non-airgap)   
@@ -282,21 +297,6 @@ To add a new combo, append a block and set `ENABLED` to `true` (only the first t
 
 <img src="./guide/5.png" style="width: 800px;" > 
 
-
-## Script Explanation
-
-| Script | Purpose | Key params / env | Input | Output |
-|--------|---------|------------------|-------|--------|
-| `1-download.sh` | Download k3s/helm/JFrog Helm Charts| `version.json` values | None | Files under `download/` |
-| `2-install-k3s.sh` | Install k3s | `K3S_DATA_DIR` from `common.sh` | downloaded k3s files | Running k3s, kubeconfig in `~/.kube/config` |
-| `3-install-jfrog-platform.sh` | Install JFrog Platform (optionally external DB) | `NAMESPACE`, `PG_HOST`, `KFS_PASSWORD` | Chart tgz, optional `custom/external-db.yaml` | Deployed JFrog Platform |
-| `3-install-art.sh` | Install JFrog Artifactory only | `NAMESPACE` | Chart tgz, `custom/art-custom-values.yaml` | Deployed JFrog Artifactory |
-| `3-install-xray.sh <JFROG_URL> <JOIN_KEY>` | Install JFrog Xray only | `NAMESPACE` | Chart tgz, `custom/xray-custom-values.yaml`, join URL, join key | Deployed JFrog Xray |
-| `4-check-and-listen.sh` | Check pods, disk usage, start port-forward | `NAMESPACE`, `K3S_DATA_DIR` | Running cluster | Pod list, port-forward listeners |
-| `4.1-pull-upgrade-check-image.sh` | Pull upgrade check image | `NAMESPACE` | Cluster access | Image pulled into `download/` |
-| `5-package.sh` | Export images and pack installation bundle | `NAMESPACE`, `K3S_DATA_DIR` | Running cluster | `~/kfs.tar.gz` |
-| `check-*.sh` | Check the runtime logs and status | None | Running services | Logs and Status |
-| `uninstall-*.sh` | Remove k3s/jfrog/docker | None | Running services | Cleaned services |
 
 ## Trouble shooting
 ### Xray db sync pending
