@@ -85,17 +85,34 @@ kfs = k3s + jfrog platform
         | Artifactory + Security (Xray/JAS/...) - Minimum     | 8C16G              | 300G |
         | Artifactory + Security (Xray/JAS/...) - Recommended | 16C32G             | 500G |
 
-## Prerequisites
+## Version Selection (`version.json`)
 
-- OS: RHEL/CentOS 7.9–9.x, Ubuntu 22.04 (match k3s matrix in `version.json`)
-- CPU/RAM/Disk: see “Resource Requirements” above
-- Tools: `helm`, `ctr` (comes with k3s), `tar`, `wget` or `curl`, `jq`, `kubectl` (k3s installs it)
-- Verify versions:
-  - `helm version`
-  - `ctr version`
-  - `kubectl version --client`
-  - `jq --version`
-  - `tar --version`, `wget --version` or `curl --version`
+- Only the first entry with `"ENABLED": true` is used.
+- Keys:
+  - `ID`: identifier for the combo
+  - `ENABLED`: mark the active combo
+  - `NAMESPACE`: namespace to install into
+  - `JFROG_PLATFORM_CHART_VERSION`/`ART_CHART_VERSION`/`XRAY_CHART_VERSION`: chart versions
+  - `K3S_ARCH`/`K3S_VERSION`: k3s binaries to download (empty = skip)
+  - `HELM_OS`/`HELM_ARCH`/`HELM_VERSION`: helm binary to download (empty = skip)
+- Minimal usable example:
+```json
+[
+  {
+    "ID": "2025-08-13",
+    "ENABLED": true,
+    "NAMESPACE": "jp",
+    "JFROG_PLATFORM_CHART_VERSION": "11.2.0",
+    "K3S_ARCH": "amd64",
+    "K3S_VERSION": "v1.27.16",
+    "HELM_OS": "linux",
+    "HELM_ARCH": "amd64",
+    "HELM_VERSION": "v3.17.1"
+  }
+]
+```
+
+To add a new combo, append a block and set `ENABLED` to `true` (only the first true is read).
 
 ## Start Installation
 
@@ -266,47 +283,19 @@ kfs = k3s + jfrog platform
 <img src="./guide/5.png" style="width: 800px;" > 
 
 
-## Version Selection (`version.json`)
-
-- Only the first entry with `"ENABLED": true` is used.
-- Keys:
-  - `ID`: identifier for the combo
-  - `ENABLED`: mark the active combo
-  - `NAMESPACE`: namespace to install into
-  - `JFROG_PLATFORM_CHART_VERSION`/`ART_CHART_VERSION`/`XRAY_CHART_VERSION`: chart versions
-  - `K3S_ARCH`/`K3S_VERSION`: k3s binaries to download (empty = skip)
-  - `HELM_OS`/`HELM_ARCH`/`HELM_VERSION`: helm binary to download (empty = skip)
-- Minimal usable example:
-```json
-[
-  {
-    "ID": "2025-08-13",
-    "ENABLED": true,
-    "NAMESPACE": "jp",
-    "JFROG_PLATFORM_CHART_VERSION": "11.2.0",
-    "K3S_ARCH": "amd64",
-    "K3S_VERSION": "v1.27.16",
-    "HELM_OS": "linux",
-    "HELM_ARCH": "amd64",
-    "HELM_VERSION": "v3.17.1"
-  }
-]
-```
-
-To add a new combo, append a block and set `ENABLED` to `true` (only the first true is read).
-
-## Tool Scripts
+## Script Explanation
 
 | Script | Purpose | Key params / env | Input | Output |
 |--------|---------|------------------|-------|--------|
-| `1-download.sh [k3s|helm|jfrog]` | Download k3s/helm/JFrog charts, stage k3s airgap images | `version.json` values | None | Files under `download/`, k3s images into `k3s-data-dir/agent/images/` |
-| `2-install-k3s.sh` | Install k3s using staged bits | `K3S_DATA_DIR` from `common.sh` | Staged k3s files | Running k3s, kubeconfig in `~/.kube/config` |
-| `3-install-jfrog-platform.sh` | Install platform chart (optionally external DB) | `NAMESPACE`, `PG_HOST`, `KFS_PASSWORD` | Chart tgz, optional `custom/external-db.yaml` | Deployed platform release |
-| `3-install-art.sh` | Install Artifactory only | `NAMESPACE` | Chart tgz, `custom/art-custom-values.yaml` | Deployed art release |
-| `3-install-xray.sh <JFROG_URL> <JOIN_KEY>` | Install Xray only | `NAMESPACE` | Chart tgz, `custom/xray-custom-values.yaml`, join key | Deployed xray release |
+| `1-download.sh` | Download k3s/helm/JFrog Helm Charts| `version.json` values | None | Files under `download/` |
+| `2-install-k3s.sh` | Install k3s | `K3S_DATA_DIR` from `common.sh` | downloaded k3s files | Running k3s, kubeconfig in `~/.kube/config` |
+| `3-install-jfrog-platform.sh` | Install JFrog Platform (optionally external DB) | `NAMESPACE`, `PG_HOST`, `KFS_PASSWORD` | Chart tgz, optional `custom/external-db.yaml` | Deployed JFrog Platform |
+| `3-install-art.sh` | Install JFrog Artifactory only | `NAMESPACE` | Chart tgz, `custom/art-custom-values.yaml` | Deployed JFrog Artifactory |
+| `3-install-xray.sh <JFROG_URL> <JOIN_KEY>` | Install JFrog Xray only | `NAMESPACE` | Chart tgz, `custom/xray-custom-values.yaml`, join URL, join key | Deployed JFrog Xray |
 | `4-check-and-listen.sh` | Check pods, disk usage, start port-forward | `NAMESPACE`, `K3S_DATA_DIR` | Running cluster | Pod list, port-forward listeners |
-| `4.1-pull-upgrade-check-image.sh` | Pre-pull upgrade check image | `NAMESPACE` | Cluster access | Image pulled into local cache |
+| `4.1-pull-upgrade-check-image.sh` | Pull upgrade check image | `NAMESPACE` | Cluster access | Image pulled into `download/` |
 | `5-package.sh` | Export images and pack installation bundle | `NAMESPACE`, `K3S_DATA_DIR` | Running cluster | `~/kfs.tar.gz` |
+| `check-*.sh` | Check the runtime logs and status | None | Running services | Logs and Status |
 | `uninstall-*.sh` | Remove k3s/jfrog/docker | None | Running services | Cleaned services |
 
 ## Trouble shooting
