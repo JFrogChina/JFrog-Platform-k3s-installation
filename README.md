@@ -299,7 +299,7 @@ To add a new combo, append a block and set `ENABLED` to `true` (only the first t
 
 
 ## Trouble shooting
-### If Xray db sync pending ()
+### If Xray db sync pending
 
 - Delete the content of the update_state table 
 
