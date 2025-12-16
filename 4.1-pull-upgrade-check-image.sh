@@ -7,7 +7,7 @@ source common.sh
 # KUBECTL_VERSION=1.24.12
 
 # "JFROG_PLATFORM_CHART_VERSION": "11.1.2" / "11.2.0"
-KUBECTL_VERSION=:1.31.2
+KUBECTL_VERSION=1.31.2
 
 # 1. check image
 
