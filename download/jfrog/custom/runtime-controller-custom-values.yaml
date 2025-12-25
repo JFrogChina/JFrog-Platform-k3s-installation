@@ -1,0 +1,7 @@
+
+agentImage:
+  pullPolicy: IfNotPresent
+  # Default tag is the chart appVersion. Set tag to override.
+  tag: ""
+controllerImage:
+  pullPolicy: IfNotPresent

@@ -3,8 +3,8 @@
 source common.sh
 
 echo "****************************************************"
-echo "*          kfs = k3s + jfrog platform!             *"
-echo "*  jfrog helm chart version=$JFROG_PLATFORM_CHART_VERSION   *"
+echo "*          kfs = k3s + jfrog platform!              "
+echo "*          jfrog helm chart version=$JFROG_PLATFORM_CHART_VERSION"
 echo "****************************************************"
 
 # function
@@ -134,13 +134,12 @@ download_jfrog() {
         echo "JFROG_PLATFORM_CHART_VERSION=$JFROG_PLATFORM_CHART_VERSION"
         echo "ART_CHART_VERSION=$ART_CHART_VERSION"
         echo "XRAY_CHART_VERSION=$XRAY_CHART_VERSION"
+        echo "RUNTIME_INGRESS_CHART_VERSION=$RUNTIME_INGRESS_CHART_VERSION"
+        echo "RUNTIME_SERVICE_CHART_VERSION=$RUNTIME_SERVICE_CHART_VERSION"
+        echo "RUNTIME_SENSORS_CHART_VERSION=$RUNTIME_SENSORS_CHART_VERSION"
 
-        if [ -n "$JFROG_PLATFORM_CHART_VERSION" ] || [ -n "$ART_CHART_VERSION" ] || [ -n "$XRAY_CHART_VERSION" ]; then
+        if [ -n "$JFROG_PLATFORM_CHART_VERSION" ] || [ -n "$ART_CHART_VERSION" ] || [ -n "$XRAY_CHART_VERSION" || [ -n "$RUNTIME_INGRESS_CHART_VERSION" || [ -n "$RUNTIME_SERVICE_CHART_VERSION" || [ -n "$RUNTIME_SENSORS_CHART_VERSION" ]; then
             
-            file_path_jfrog="$DOWNLOAD_DIR_JFROG/jfrog-platform-$JFROG_PLATFORM_CHART_VERSION.tgz"
-            file_path_art="$DOWNLOAD_DIR_JFROG/artifactory-$ART_CHART_VERSION.tgz"
-            file_path_xray="$DOWNLOAD_DIR_JFROG/xray-$XRAY_CHART_VERSION.tgz"
-
             # download jfrog-platform
             if [ -n "$JFROG_PLATFORM_CHART_VERSION" ]; then
                 file_path="$DOWNLOAD_DIR_JFROG/jfrog-platform-$JFROG_PLATFORM_CHART_VERSION.tgz"
@@ -194,6 +193,70 @@ download_jfrog() {
                     helm pull jfrog/xray --version=$XRAY_CHART_VERSION
                 fi
             fi
+
+            # download runtime ingress controller
+            if [ -n "$RUNTIME_INGRESS_CHART_VERSION" ]; then
+                file_path="$DOWNLOAD_DIR_JFROG/ingress-nginx-$RUNTIME_INGRESS_CHART_VERSION.tgz"
+
+                if [ -f "$file_path" ]; then
+                    echo "file found in local: $file_path"
+                else
+                    echo "$file_path not found, start download..."
+
+                    # use chart from jfrog
+                    # helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+                    echo "helm repo add & update jfrog - for runtime ingress controller chart"
+                    helm repo add jfrog https://charts.jfrog.io 
+                    helm repo update jfrog
+
+                    # helm search repo ingress-nginx
+                    # jfrog/ingress-nginx        	4.5.2        	1.6.4      	Ingress controller for Kubernetes using NGINX a...
+
+                    cd $DOWNLOAD_DIR_JFROG
+                    helm pull jfrog/ingress-nginx --version=$RUNTIME_INGRESS_CHART_VERSION
+                fi
+            fi
+
+            # download runtime service
+            if [ -n "$RUNTIME_SERVICE_CHART_VERSION" ]; then
+                file_path="$DOWNLOAD_DIR_JFROG/runtime-service-$RUNTIME_SERVICE_CHART_VERSION.tgz"
+
+                if [ -f "$file_path" ]; then
+                    echo "file found in local: $file_path"
+                else
+                    echo "$file_path not found, start download..."
+
+                    echo "helm repo add & update jfrog - for runtime chart"
+                    helm repo add jfrog https://charts.jfrog.io 
+                    helm repo update jfrog
+                    # helm search repo jfrog/runtime
+                    
+                    # jfrog/runtime        	101.2.7      	1.2.7      	Runtime Security service                          
+                    # jfrog/runtime-sensors	101.2.9      	1.2.9      	Helm chart for the deployment of JFrog Runtime ...
+
+                    cd $DOWNLOAD_DIR_JFROG
+                    helm pull jfrog/runtime --version=$RUNTIME_SERVICE_CHART_VERSION
+                fi
+            fi
+
+            # download runtime sensors
+            if [ -n "$RUNTIME_SENSORS_CHART_VERSION" ]; then
+                file_path="$DOWNLOAD_DIR_JFROG/runtime-sensors-$RUNTIME_SENSORS_CHART_VERSION.tgz"
+
+                if [ -f "$file_path" ]; then
+                    echo "file found in local: $file_path"
+                else
+                    echo "$file_path not found, start download..."
+
+                    echo "helm repo add & update jfrog - for runtime sensors chart"
+                    helm repo add jfrog https://charts.jfrog.io 
+                    helm repo update jfrog
+
+                    cd $DOWNLOAD_DIR_JFROG
+                    helm pull jfrog/runtime-sensors --version=$RUNTIME_SENSORS_CHART_VERSION
+                fi
+            fi
+
         else
             echo "no jfrog helm chart values defined, skip download"
         fi

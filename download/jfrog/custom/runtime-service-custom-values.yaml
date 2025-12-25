@@ -1,0 +1,35 @@
+global:
+  deployEnv: onprem
+  # within the same namespace, use service name of artifactory
+  jfrogUrl: jfrog-platform-artifactory # <add-your-public-domain-here>
+
+postgresql:
+  enabled: true
+
+# To use an external database, comment the section above and use the following:
+# database:
+#   url: postgres://<host>:5432/runtime
+#   user: runtime
+#   password: <password>
+
+ingress:
+  grpc:
+    tlsSecretName: runtime-tls-secret
+    securedBackendProtocol: false
+
+router:
+  jfrogUrl: http://jfrog-platform-artifactory:8082 # Example: http://artifactory:8082
+
+runtime:
+  joinKey: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE # The same join key as used in Artifactory
+  enableGrpcGateway: true
+  image:
+    registry: releases-docker.jfrog.io
+    imagePullPolicy: IfNotPresent
+
+initContainerImage: 
+    imagePullPolicy: IfNotPresent
+
+# self-signed certificate
+tlsInsecureSkipVerify: true
+

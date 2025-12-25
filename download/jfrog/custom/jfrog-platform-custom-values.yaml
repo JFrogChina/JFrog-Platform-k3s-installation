@@ -42,6 +42,8 @@ artifactory:
 ## if use mysql, enable artifactory.preStartCommand to download dirver
     # preStartCommand: "mkdir -p /opt/jfrog/artifactory/var/bootstrap/artifactory/tomcat/lib; cd /opt/jfrog/artifactory/var/bootstrap/artifactory/tomcat/lib && curl -o /opt/jfrog/artifactory/var/bootstrap/artifactory/tomcat/lib/mysql-connector-java-8.0.13.jar https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.13/mysql-connector-java-8.0.13.jar"
   nginx:
+    # if install runtime, disable nginx
+    enabled: true
     service:
       annotations: {}
     http:
@@ -49,6 +51,28 @@ artifactory:
     https:
       externalPort: 8443
     # tlsSecretName: my-tls
+  ingress:
+    # if install runtime, enable ingress
+    enabled: false
+    defaultBackend:
+      enabled: true
+    hosts: []
+      # here use [] to ignore domain
+      # - <add-your-public-domain-here>
+    routerPath: /
+    disableRouterBypass: true
+    artifactoryPath: /artifactory/
+    className: "nginx"
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+      nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      nginx.ingress.kubernetes.io/rewrite-target: "/"
+    tls:
+      - secretName: artifactory-tls-secret
+        hosts: []
+          # here use [] to ignore domain
+          # - <add-your-public-domain-here>
 xray:
   enabled: true
   xray:
