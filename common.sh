@@ -2,7 +2,27 @@ echo
 echo "kfs common start"
 echo "****************************************************"
 
-VERSIONS_FILE="version.json"
+echo
+
+# kfs path
+SHELL_DIR=$(dirname "$BASH_SOURCE")
+APP_DIR=$(cd $SHELL_DIR; pwd)
+
+DOWNLOAD_DIR=$APP_DIR/download
+DOWNLOAD_DIR_K3S=$APP_DIR/download/k3s
+DOWNLOAD_DIR_HELM=$APP_DIR/download/helm
+DOWNLOAD_DIR_JFROG=$APP_DIR/download/jfrog
+
+K3S_DATA_DIR=$APP_DIR/k3s-data-dir
+# make sure dir exists, possible not included when packaging
+mkdir -p $K3S_DATA_DIR
+mkdir -p $K3S_DATA_DIR/agent/images/
+
+echo "APP_DIR is $APP_DIR"
+echo "DOWNLOAD_DIR is $DOWNLOAD_DIR"
+echo "K3S_DATA_DIR is $K3S_DATA_DIR"
+
+VERSIONS_FILE="$APP_DIR/version.json"
 
 # read the KFS_VERSION
 KFS_VERSION=$(grep -o '"KFS_VERSION": *"[^"]*"' "$VERSIONS_FILE" | sed 's/.*: *"\([^"]*\)".*/\1/')
@@ -52,27 +72,6 @@ while IFS=':' read -r key value; do
 done < "$tmpfile"
 
 rm -f "$tmpfile"
-
-echo
-
-# kfs path
-SHELL_DIR=$(dirname "$BASH_SOURCE")
-
-APP_DIR=$(cd $SHELL_DIR; pwd)
-
-DOWNLOAD_DIR=$APP_DIR/download
-DOWNLOAD_DIR_K3S=$APP_DIR/download/k3s
-DOWNLOAD_DIR_HELM=$APP_DIR/download/helm
-DOWNLOAD_DIR_JFROG=$APP_DIR/download/jfrog
-
-K3S_DATA_DIR=$APP_DIR/k3s-data-dir
-# make sure dir exists, possible not included when packaging
-mkdir -p $K3S_DATA_DIR
-mkdir -p $K3S_DATA_DIR/agent/images/
-
-echo "APP_DIR is $APP_DIR"
-echo "DOWNLOAD_DIR is $DOWNLOAD_DIR"
-echo "K3S_DATA_DIR is $K3S_DATA_DIR"
 
 echo
 echo "kfs common end"

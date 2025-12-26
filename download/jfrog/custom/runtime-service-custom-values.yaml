@@ -1,7 +1,7 @@
 global:
   deployEnv: onprem
   # within the same namespace, use service name of artifactory
-  jfrogUrl: jfrog-platform-artifactory # <add-your-public-domain-here>
+  jfrogUrl: ingress-nginx-controller # <add-your-public-domain-here>
 
 postgresql:
   enabled: true

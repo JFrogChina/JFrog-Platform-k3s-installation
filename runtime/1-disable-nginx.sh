@@ -1,6 +1,8 @@
 
 # include common
-source common.sh
+SHELL_DIR=$(dirname "$BASH_SOURCE")
+APP_DIR=$(cd $SHELL_DIR; pwd)
+source $APP_DIR/../common.sh
 
 # 1. kill port forward to nginx
 $APP_DIR/kill-kubectl.sh
