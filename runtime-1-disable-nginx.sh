@@ -6,7 +6,7 @@ source common.sh
 $APP_DIR/kill-kubectl.sh
 
 # 2. upgrade artifactory to disable nginx & enable ingress
-ehco
+echo
 echo "to install runtime, first need to upgrade artifactory"
 echo "check $DOWNLOAD_DIR_JFROG/custom/jfrog-platform-custom-values.yaml / art-custom-values.yaml"
 echo "1. disable its nginx"
