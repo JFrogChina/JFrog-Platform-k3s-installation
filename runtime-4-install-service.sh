@@ -6,9 +6,6 @@ echo
 echo "install runtime service start"
 echo "****************************************************"
 
-# 1. set host
-
-# 2. install
 cd $DOWNLOAD_DIR_JFROG
 helm upgrade --install runtime --namespace "$NAMESPACE" ./runtime-service-$RUNTIME_SERVICE_CHART_VERSION.tgz -f ./custom/runtime-service-custom-values.yaml
 

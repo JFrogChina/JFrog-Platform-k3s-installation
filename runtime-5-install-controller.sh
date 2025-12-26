@@ -6,7 +6,6 @@ echo
 echo "install runtime controller start"
 echo "****************************************************"
 
-
 echo
     : "${REGISTRATION_TOKEN:?REGISTRATION_TOKEN is required, get it from admin > runtime settings > cluster management}"
 
