@@ -10,3 +10,15 @@ helm list -n $NAMESPACE
 
 # https://charts.jfrog.io/
 
+echo
+echo "get values of jfrog-platform"
+helm get values jfrog-platform -n $NAMESPACE
+
+echo
+echo "get values of artifactory"
+helm get values artifactory -n $NAMESPACE
+
+echo
+echo "get values of xray"
+helm get values xray -n $NAMESPACE
+

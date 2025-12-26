@@ -2,11 +2,6 @@
 # include common
 source common.sh
 
-echo "****************************************************"
-echo "*          kfs = k3s + jfrog platform!              "
-echo "*          jfrog helm chart version=$JFROG_PLATFORM_CHART_VERSION"
-echo "****************************************************"
-
 # function
 check_and_download_file() {
     local file_path=$1
