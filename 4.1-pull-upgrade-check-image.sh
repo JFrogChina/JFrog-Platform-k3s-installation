@@ -1,7 +1,8 @@
 
 # include common
-source common.sh
-
+SHELL_DIR=$(dirname "$BASH_SOURCE")
+SHELL_PATH=$(cd $SHELL_DIR; pwd)
+source $SHELL_PATH/common.sh
 
 # "JFROG_PLATFORM_CHART_VERSION": "10.20.0"
 # KUBECTL_VERSION=1.24.12

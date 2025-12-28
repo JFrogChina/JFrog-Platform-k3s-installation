@@ -1,6 +1,7 @@
-
 # include common
-source common.sh
+SHELL_DIR=$(dirname "$BASH_SOURCE")
+SHELL_PATH=$(cd $SHELL_DIR; pwd)
+source $SHELL_PATH/common.sh
 
 kubectl exec --stdin --tty jfrog-platform-xray-0 -n $NAMESPACE -- /bin/bash
 

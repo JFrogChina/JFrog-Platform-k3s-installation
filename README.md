@@ -34,7 +34,7 @@ kfs = k3s + jfrog platform
 
 ## Architecture
 
-<img src="./guide/kfs.png" style="width: 800px;" >
+<img src="./images/kfs.png" style="width: 800px;" >
 
 ## Supported Systems
 
@@ -212,7 +212,7 @@ To add a new combo, append a block and set `ENABLED` to `true` (only the first t
 
                 The benefit of including it is that all the demo configurations you make in the simulation environment will be retained in the airgap environment.
 
-<img src="./guide/1.png" style="width: 800px;" > 
+<img src="./images/1.png" style="width: 800px;" > 
 
 1.4 Offline Activation of JFrog in an Air-gapped Environment
 
@@ -267,11 +267,11 @@ To add a new combo, append a block and set `ENABLED` to `true` (only the first t
 
                 This step will copy the downloaded package to the directory waiting to be installed
 
-<img src="./guide/2.png" style="width: 800px;" > 
+<img src="./images/2.png" style="width: 800px;" > 
 
         ./2-install-k3s.sh
 
-<img src="./guide/3.png" style="width: 800px;" > 
+<img src="./images/3.png" style="width: 800px;" > 
 
         ./3-install-xxx.sh
         
@@ -291,11 +291,11 @@ To add a new combo, append a block and set `ENABLED` to `true` (only the first t
 
                 If you have included k3s_data_dir in your package, you don't need to perform this step.
 
-<img src="./guide/4.png" style="width: 800px;" > 
+<img src="./images/4.png" style="width: 800px;" > 
 
         ./4-check-and-listen.sh
 
-<img src="./guide/5.png" style="width: 800px;" > 
+<img src="./images/5.png" style="width: 800px;" > 
 
 
 ## Trouble shooting

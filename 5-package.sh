@@ -1,6 +1,8 @@
 
 # include common
-source common.sh
+SHELL_DIR=$(dirname "$BASH_SOURCE")
+SHELL_PATH=$(cd $SHELL_DIR; pwd)
+source $SHELL_PATH/common.sh
 
 echo
 echo "package start"
@@ -34,7 +36,7 @@ echo
 echo "2. package kfs to $KFS_PACKAGE_PATH"
 echo "----------------------------------------------------"
 
-cd $APP_DIR
+cd $KFS_DIR
 cd ..    
 
 echo "include k3s data dir? (y/n, default is n)"
@@ -44,10 +46,10 @@ read -r choice
 if [ -z "$choice" ] || [ "$choice" = "n" ] || [ "$choice" = "N" ]; then
     echo "you have chosen n"
     echo "not to include"
-    tar --exclude=$K3S_DATA_DIR --exclude-vcs -czvf $KFS_PACKAGE_PATH $APP_DIR
+    tar --exclude=$K3S_DATA_DIR --exclude-vcs -czvf $KFS_PACKAGE_PATH $KFS_DIR
 else
     echo "you have chosen y"
-    tar --exclude-vcs -czvf $KFS_PACKAGE_PATH $APP_DIR
+    tar --exclude-vcs -czvf $KFS_PACKAGE_PATH $KFS_DIR
 fi
 
 echo
