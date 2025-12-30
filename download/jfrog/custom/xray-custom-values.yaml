@@ -1,1 +1,17 @@
-
+rabbitmq:
+  auth:
+    username: guest
+    password: password
+# extraSystemYaml:
+#   shared:
+#     node:
+#       id: xray
+router:
+  extraEnvVars: |
+    - name: JF_SHARED_NODE_IP
+      value: xray.example.com
+hostAliases: 
+  - ip: "x.x.x.x"
+    hostnames:
+      - "xray.example.com"
+    

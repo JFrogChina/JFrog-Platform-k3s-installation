@@ -26,7 +26,7 @@ echo "JOIN_KEY = $JOIN_KEY"
 
 
 # ensure namespace exists (idempotent)
-kubectl create namespace "$NAMESPACE" --dry-run=client -o yaml | kubectl apply -f -
+kubectl create namespace $NAMESPACE --dry-run=client -o yaml | kubectl apply -f -
 
 # install / upgrade
 # NOTICE

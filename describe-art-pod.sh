@@ -3,5 +3,9 @@ SHELL_DIR=$(dirname "$BASH_SOURCE")
 SHELL_PATH=$(cd $SHELL_DIR; pwd)
 source $SHELL_PATH/common.sh
 
+# platform
 kubectl describe pod/jfrog-platform-artifactory-0 -n $NAMESPACE
+
+# artifactory
+kubectl describe pod/artifactory-0 -n $NAMESPACE
 
