@@ -6,5 +6,5 @@ source $SHELL_PATH/common.sh
 # platform
 kubectl describe pod/jfrog-platform-xray-0 -n $NAMESPACE
 
-# artifactory
+# xray
 kubectl describe pod/xray-0 -n $NAMESPACE

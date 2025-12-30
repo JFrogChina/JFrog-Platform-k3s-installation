@@ -8,11 +8,15 @@ echo
 echo "install runtime ingress controller start"
 echo "****************************************************"
 
+kubectl create namespace $NAMESPACE
+
 cd $DOWNLOAD_DIR_JFROG
 helm install ingress-nginx --namespace "$NAMESPACE" ./ingress-nginx-$RUNTIME_INGRESS_CHART_VERSION.tgz \
   --set controller.service.type=NodePort \
   --set controller.service.ports.http=8080 \
-  --set controller.service.ports.https=8443
+  --set controller.service.nodePorts.http=30080 \
+  --set controller.service.ports.https=8443 \
+  --set controller.service.nodePorts.https=30443
 
 echo
 echo "install runtime ingress controller end "

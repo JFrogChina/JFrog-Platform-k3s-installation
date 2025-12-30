@@ -12,7 +12,7 @@ echo
 echo "try to listen by ingress controller"
 echo "----------------------------------------------------"
 
-# 2. listren by ingress controller
+# 2. listen by ingress controller
 kubectl port-forward -n $NAMESPACE svc/ingress-nginx-controller 8080:8080 --address 0.0.0.0 &
 kubectl port-forward -n $NAMESPACE svc/ingress-nginx-controller 8443:8443 --address 0.0.0.0 &
 

@@ -12,10 +12,10 @@ spec:
     - host: xray.example.com
       http:
         paths:
-          - path: /
+          - path: /router
             pathType: Prefix
             backend:
               service:
                 name: xray
                 port:
-                  number: 8082
+                  number: 80 # xray service internal port
