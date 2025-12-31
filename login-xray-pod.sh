@@ -3,7 +3,11 @@ SHELL_DIR=$(dirname "$BASH_SOURCE")
 SHELL_PATH=$(cd $SHELL_DIR; pwd)
 source $SHELL_PATH/common.sh
 
+# platform
 kubectl exec --stdin --tty jfrog-platform-xray-0 -n $NAMESPACE -- /bin/bash
+
+# xray
+kubectl exec --stdin --tty xray-0 -n $NAMESPACE -- /bin/bash
 
 # after login
 
