@@ -18,4 +18,4 @@ spec:
               service:
                 name: xray
                 port:
-                  number: 80 # xray service internal port
+                  number: 8082 # xray service internal port to router

@@ -1,15 +1,15 @@
 rabbitmq:
   auth:
     username: guest
-    password: password
-router:
-  extraEnvVars: |
-    - name: JF_SHARED_NODE_IP
-      value: x.x.x.x
-  # externalPort: 30080 # will be xray service internal port, default is 8082
-xray:
-  extraSystemYaml:
-    router:
-      entrypoints: 
-        externalPort: 30080 # art requests this port, e.g. x.x.x.x:port
+    password: password # required to change this password otherwise install will fail
+# router:
+#   extraEnvVars: |
+#     - name: JF_SHARED_NODE_IP
+#       value: x.x.x.x
+#   externalPort: 30080 # will be xray service internal port, default is 8082
+# xray:
+#   extraSystemYaml:
+#     router:
+#       entrypoints: 
+#         externalPort: 30080 # art requests this port, e.g. x.x.x.x:port
     
