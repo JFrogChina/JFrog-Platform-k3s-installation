@@ -1,4 +1,5 @@
-
+mc:
+  enabled: true
 artifactory:
   # persistence:
   # existingClaim: pvc-art
